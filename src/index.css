@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Redefine amber scale to Natural Tones color palette */
+  --color-amber-50: #FAF7F2;
+  --color-amber-100: #E5DCCF;
+  --color-amber-200: #DED4C7;
+  --color-amber-300: #FFDAB9;
+  --color-amber-400: #FF9933;
+  --color-amber-500: #FF9933;
+  --color-amber-600: #E68019;
+  --color-amber-700: #8C7B6A;
+  --color-amber-850: #4A3E31;
+  --color-amber-800: #5C4D3C;
+  --color-amber-900: #3D352D;
+  --color-amber-950: #26211C;
+}
