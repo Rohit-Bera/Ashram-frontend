@@ -1,8 +1,9 @@
 import React, { useState, useRef } from 'react';
 import { useGlobalContext } from './LangContext';
 import { Plus, Edit2, Trash2, Check, X, Shield, Settings, TrendingUp, ShoppingBag, Calendar, Users, RefreshCw, BookOpen, Compass, Globe, ChevronLeft, ChevronRight, Languages } from 'lucide-react';
-import { Guru, Ashram, AshramEvent, Product, ProductCategory, LocalizedString } from '../types';
+import { Guru, Ashram, AshramEvent, Product, ProductCategory, LocalizedString, LanguageCode } from '../types';
 import { ImageUploader } from './ImageUploader';
+import { TranslationDrawer } from './TranslationDrawer';
 
 export const AdminPanel: React.FC = () => {
   const {
@@ -47,8 +48,13 @@ export const AdminPanel: React.FC = () => {
   const [translationDraft, setTranslationDraft] = useState<TranslationMap>({});
   const [translationSaving, setTranslationSaving] = useState(false);
   const [translationMsg, setTranslationMsg] = useState<{ ok: boolean; text: string } | null>(null);
-  const [newStringKey, setNewStringKey] = useState('');
-  const [newStringValues, setNewStringValues] = useState({ en: '', hi: '', gu: '', bn: '' });
+
+  // Drawer language selector state (shared across all entity drawers)
+  const [drawerLang, setDrawerLang] = useState<LanguageCode>('en');
+
+  const LANG_LABELS: Record<LanguageCode, string> = {
+    en: 'English', hi: 'हिन्दी', gu: 'ગુજરાતી', bn: 'বাংলা'
+  };
 
   React.useEffect(() => {
     if (uiTranslations && Object.keys(uiTranslations).length > 0) {
@@ -295,8 +301,8 @@ export const AdminPanel: React.FC = () => {
       if (res.ok) {
         setShowAddForm(false);
         setEditingEntityId(null);
+        setDrawerLang('en');
         handleSyncData();
-        // Reset form
         setProductForm({
           name_en: '', name_hi: '', name_gu: '', name_bn: '',
           description_en: '', description_hi: '', description_gu: '', description_bn: '',
@@ -362,6 +368,7 @@ export const AdminPanel: React.FC = () => {
       if (res.ok) {
         setShowAddForm(false);
         setEditingEntityId(null);
+        setDrawerLang('en');
         handleSyncData();
       }
     } catch (err) {
@@ -400,6 +407,7 @@ export const AdminPanel: React.FC = () => {
       if (res.ok) {
         setShowAddForm(false);
         setEditingEntityId(null);
+        setDrawerLang('en');
         handleSyncData();
       }
     } catch (err) {
@@ -438,6 +446,7 @@ export const AdminPanel: React.FC = () => {
       if (res.ok) {
         setShowAddForm(false);
         setEditingEntityId(null);
+        setDrawerLang('en');
         handleSyncData();
       }
     } catch (err) {
@@ -474,6 +483,7 @@ export const AdminPanel: React.FC = () => {
       if (res.ok) {
         setShowAddForm(false);
         setEditingEntityId(null);
+        setDrawerLang('en');
         handleSyncData();
       }
     } catch (err) {
@@ -697,80 +707,77 @@ export const AdminPanel: React.FC = () => {
               <p className="text-[11px] text-amber-800/70 mt-0.5">Edit store cards and update stockpiles</p>
             </div>
             
-            {!showAddForm && (
-              <button
-                onClick={() => {
-                  setEditingEntityId(null);
-                  setShowAddForm(true);
-                }}
-                className="px-3.5 py-2 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs rounded-lg transition-all flex items-center gap-1"
-              >
-                <Plus className="w-4 h-4" />
-                Add New Product
-              </button>
-            )}
+            <button
+              onClick={() => {
+                setEditingEntityId(null);
+                setDrawerLang('en');
+                setProductForm({
+                  name_en: '', name_hi: '', name_gu: '', name_bn: '',
+                  description_en: '', description_hi: '', description_gu: '', description_bn: '',
+                  category: 'Books', price: 100, stock: 50, isAvailable: true,
+                  imageUrl: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=400'
+                });
+                setShowAddForm(true);
+              }}
+              className="px-3.5 py-2 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs rounded-lg transition-all flex items-center gap-1"
+            >
+              <Plus className="w-4 h-4" />
+              Add New Product
+            </button>
           </div>
 
-          {showAddForm && (
-            <form onSubmit={handleProductSubmit} className="bg-amber-50/50 rounded-2xl border border-amber-100 p-6 space-y-4 animate-in slide-in-from-top-4">
-              <h4 className="text-sm font-serif font-bold text-amber-950 pb-2 border-b border-amber-100">
-                {editingEntityId ? 'Modify Product Specifications' : 'Submit New Product to Store'}
-              </h4>
+          <TranslationDrawer
+            open={showAddForm}
+            title={editingEntityId ? 'Edit Product' : 'Add New Product'}
+            selectedLang={drawerLang}
+            onLangChange={setDrawerLang}
+            onClose={() => { setShowAddForm(false); setDrawerLang('en'); }}
+            onSave={handleProductSubmit}
+          >
+            {/* Translation fields */}
+            <div className="space-y-4">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-amber-700 border-b border-amber-100 pb-2">
+                Content · {LANG_LABELS[drawerLang]}
+              </p>
+              <div>
+                <label className="text-[10px] font-bold text-amber-900 block mb-1">
+                  Product Name{drawerLang === 'en' ? ' *' : ''}
+                </label>
+                <input
+                  type="text"
+                  required={drawerLang === 'en'}
+                  value={(productForm as any)[`name_${drawerLang}`]}
+                  onChange={e => setProductForm({ ...productForm, [`name_${drawerLang}`]: e.target.value })}
+                  placeholder={drawerLang !== 'en' ? 'Leave blank to use English' : ''}
+                  className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5"
+                />
+                {drawerLang !== 'en' && (
+                  <p className="text-[10px] text-amber-400 mt-0.5 italic truncate">EN: {productForm.name_en || '—'}</p>
+                )}
+              </div>
+              <div>
+                <label className="text-[10px] font-bold text-amber-900 block mb-1">
+                  Description{drawerLang === 'en' ? ' *' : ''}
+                </label>
+                <textarea
+                  required={drawerLang === 'en'}
+                  value={(productForm as any)[`description_${drawerLang}`]}
+                  onChange={e => setProductForm({ ...productForm, [`description_${drawerLang}`]: e.target.value })}
+                  placeholder={drawerLang !== 'en' ? 'Leave blank to use English' : ''}
+                  className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5 h-20"
+                />
+                {drawerLang !== 'en' && (
+                  <p className="text-[10px] text-amber-400 mt-0.5 italic line-clamp-2">EN: {productForm.description_en || '—'}</p>
+                )}
+              </div>
+            </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Product details */}
+            <div className="space-y-4 pt-4 border-t border-amber-100">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-amber-700 pb-1">Product Details</p>
+              <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Product Name (EN) *</label>
-                  <input
-                    type="text"
-                    required
-                    value={productForm.name_en}
-                    onChange={e => setProductForm({ ...productForm, name_en: e.target.value })}
-                    className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5"
-                  />
-                </div>
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Product Name (HI) *</label>
-                  <input
-                    type="text"
-                    required
-                    value={productForm.name_hi}
-                    onChange={e => setProductForm({ ...productForm, name_hi: e.target.value })}
-                    className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5"
-                  />
-                </div>
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Product Name (GU) *</label>
-                  <input
-                    type="text"
-                    required
-                    value={productForm.name_gu}
-                    onChange={e => setProductForm({ ...productForm, name_gu: e.target.value })}
-                    className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5"
-                  />
-                </div>
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Product Name (BN) *</label>
-                  <input
-                    type="text"
-                    required
-                    value={productForm.name_bn}
-                    onChange={e => setProductForm({ ...productForm, name_bn: e.target.value })}
-                    className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5"
-                  />
-                </div>
-
-                <div className="md:col-span-2">
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Description (English) *</label>
-                  <textarea
-                    required
-                    value={productForm.description_en}
-                    onChange={e => setProductForm({ ...productForm, description_en: e.target.value })}
-                    className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5 h-16"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Category Category *</label>
+                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Category *</label>
                   <select
                     value={productForm.category}
                     onChange={e => setProductForm({ ...productForm, category: e.target.value as any })}
@@ -783,7 +790,6 @@ export const AdminPanel: React.FC = () => {
                     <option>Donations</option>
                   </select>
                 </div>
-
                 <div>
                   <label className="text-[10px] font-bold text-amber-900 block mb-1">Price (₹ INR) *</label>
                   <input
@@ -794,9 +800,8 @@ export const AdminPanel: React.FC = () => {
                     className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5"
                   />
                 </div>
-
                 <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Inventory Stock level *</label>
+                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Inventory Stock Level *</label>
                   <input
                     type="number"
                     required
@@ -805,7 +810,6 @@ export const AdminPanel: React.FC = () => {
                     className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5"
                   />
                 </div>
-
                 <div>
                   <ImageUploader
                     label="Product Image"
@@ -825,25 +829,8 @@ export const AdminPanel: React.FC = () => {
                   </div>
                 </div>
               </div>
-
-              {/* Form Controls submit/cancel */}
-              <div className="flex gap-2.5 justify-end">
-                <button
-                  type="button"
-                  onClick={() => setShowAddForm(false)}
-                  className="px-4 py-2 text-xs bg-white border border-amber-200 text-amber-900 rounded-lg font-medium transition-colors"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-bold text-xs shadow transition-colors"
-                >
-                  Save Product specifications
-                </button>
-              </div>
-            </form>
-          )}
+            </div>
+          </TranslationDrawer>
 
           {/* Table list */}
           <div className="bg-white rounded-2xl border border-amber-100 p-5 shadow-sm">
@@ -887,6 +874,7 @@ export const AdminPanel: React.FC = () => {
                                 imageUrl: p.imageUrl
                               });
                               setEditingEntityId(p.id);
+                              setDrawerLang('en');
                               setShowAddForm(true);
                             }}
                             className="p-1.5 hover:bg-amber-100 rounded text-amber-850"
@@ -918,101 +906,113 @@ export const AdminPanel: React.FC = () => {
               <h3 className="text-base font-serif font-medium text-amber-950">Auspicious Ashram Calendars</h3>
               <p className="text-[11px] text-amber-800/70 mt-0.5">Toggle Event Status Active/Inactive and monitor registrations count</p>
             </div>
-            {!showAddForm && (
-              <button
-                onClick={() => {
-                  setEditingEntityId(null);
-                  setEventForm({
-                    name_en: '', name_hi: '', name_gu: '', name_bn: '',
-                    description_en: '', description_hi: '', description_gu: '', description_bn: '',
-                    date: '', time: '',
-                    location_en: '', location_hi: '', location_gu: '', location_bn: '',
-                    imageUrl: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=800',
-                    ticketPrice: 0, availableTickets: 500, isActive: true
-                  });
-                  setShowAddForm(true);
-                }}
-                className="px-3.5 py-2 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs rounded-lg transition-all flex items-center gap-1 shrink-0"
-              >
-                <Plus className="w-4 h-4" />
-                Add New Event
-              </button>
-            )}
+            <button
+              onClick={() => {
+                setEditingEntityId(null);
+                setDrawerLang('en');
+                setEventForm({
+                  name_en: '', name_hi: '', name_gu: '', name_bn: '',
+                  description_en: '', description_hi: '', description_gu: '', description_bn: '',
+                  date: '', time: '',
+                  location_en: '', location_hi: '', location_gu: '', location_bn: '',
+                  imageUrl: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=800',
+                  ticketPrice: 0, availableTickets: 500, isActive: true
+                });
+                setShowAddForm(true);
+              }}
+              className="px-3.5 py-2 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs rounded-lg transition-all flex items-center gap-1 shrink-0"
+            >
+              <Plus className="w-4 h-4" />
+              Add New Event
+            </button>
           </div>
 
-          {showAddForm && (
-            <form onSubmit={handleEventSubmit} className="bg-amber-50/50 rounded-2xl border border-amber-100 p-6 space-y-4 animate-in slide-in-from-top-4">
-              <h4 className="text-sm font-serif font-bold text-amber-950 pb-2 border-b border-amber-100">
-                {editingEntityId ? 'Modify Event Specifications' : 'Submit New Ashram Event'}
-              </h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Event Name (EN) *</label>
-                  <input type="text" required value={eventForm.name_en} onChange={e => setEventForm({...eventForm, name_en: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
-                </div>
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Event Name (HI)</label>
-                  <input type="text" value={eventForm.name_hi} onChange={e => setEventForm({...eventForm, name_hi: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
-                </div>
+          <TranslationDrawer
+            open={showAddForm}
+            title={editingEntityId ? 'Edit Event' : 'Add New Event'}
+            selectedLang={drawerLang}
+            onLangChange={setDrawerLang}
+            onClose={() => { setShowAddForm(false); setDrawerLang('en'); }}
+            onSave={handleEventSubmit}
+          >
+            {/* Translation fields */}
+            <div className="space-y-4">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-amber-700 border-b border-amber-100 pb-2">
+                Content · {LANG_LABELS[drawerLang]}
+              </p>
+              <div>
+                <label className="text-[10px] font-bold text-amber-900 block mb-1">Event Name{drawerLang === 'en' ? ' *' : ''}</label>
+                <input
+                  type="text"
+                  required={drawerLang === 'en'}
+                  value={(eventForm as any)[`name_${drawerLang}`]}
+                  onChange={e => setEventForm({ ...eventForm, [`name_${drawerLang}`]: e.target.value })}
+                  placeholder={drawerLang !== 'en' ? 'Leave blank to use English' : ''}
+                  className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5"
+                />
+                {drawerLang !== 'en' && (
+                  <p className="text-[10px] text-amber-400 mt-0.5 italic truncate">EN: {eventForm.name_en || '—'}</p>
+                )}
               </div>
+              <div>
+                <label className="text-[10px] font-bold text-amber-900 block mb-1">Location{drawerLang === 'en' ? ' *' : ''}</label>
+                <input
+                  type="text"
+                  required={drawerLang === 'en'}
+                  value={(eventForm as any)[`location_${drawerLang}`]}
+                  onChange={e => setEventForm({ ...eventForm, [`location_${drawerLang}`]: e.target.value })}
+                  placeholder={drawerLang !== 'en' ? 'Leave blank to use English' : ''}
+                  className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5"
+                />
+                {drawerLang !== 'en' && (
+                  <p className="text-[10px] text-amber-400 mt-0.5 italic truncate">EN: {eventForm.location_en || '—'}</p>
+                )}
+              </div>
+              <div>
+                <label className="text-[10px] font-bold text-amber-900 block mb-1">Description{drawerLang === 'en' ? ' *' : ''}</label>
+                <textarea
+                  required={drawerLang === 'en'}
+                  value={(eventForm as any)[`description_${drawerLang}`]}
+                  onChange={e => setEventForm({ ...eventForm, [`description_${drawerLang}`]: e.target.value })}
+                  placeholder={drawerLang !== 'en' ? 'Leave blank to use English' : ''}
+                  className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5 h-20"
+                />
+                {drawerLang !== 'en' && (
+                  <p className="text-[10px] text-amber-400 mt-0.5 italic line-clamp-2">EN: {eventForm.description_en || '—'}</p>
+                )}
+              </div>
+            </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Event details */}
+            <div className="space-y-4 pt-4 border-t border-amber-100">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-amber-700 pb-1">Event Details</p>
+              <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Auspicious Date (YYYY-MM-DD) *</label>
+                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Date (YYYY-MM-DD) *</label>
                   <input type="date" required value={eventForm.date} onChange={e => setEventForm({...eventForm, date: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
                 </div>
                 <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Time (e.g. 18:00) *</label>
-                  <input type="text" required value={eventForm.time} onChange={e => setEventForm({...eventForm, time: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
+                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Time *</label>
+                  <input type="text" required value={eventForm.time} onChange={e => setEventForm({...eventForm, time: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" placeholder="18:00" />
                 </div>
                 <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Ticket Price (₹ INR) *</label>
+                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Ticket Price (₹) *</label>
                   <input type="number" required value={eventForm.ticketPrice} onChange={e => setEventForm({...eventForm, ticketPrice: Number(e.target.value)})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
                 </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Location Coord / Text *</label>
-                  <input type="text" required value={eventForm.location_en} onChange={e => setEventForm({...eventForm, location_en: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
-                </div>
-                <div>
-                  <ImageUploader
-                    label="Event Banner Image"
-                    defaultUrl={eventForm.imageUrl}
-                    imageType="hero"
-                    onUploadSuccess={url => setEventForm({...eventForm, imageUrl: url})}
-                  />
-                  <div className="mt-1">
-                    <label className="text-[9px] font-mono text-amber-700/70 block mb-0.5">Or paste direct image URL</label>
-                    <input
-                      type="text"
-                      required
-                      value={eventForm.imageUrl}
-                      onChange={e => setEventForm({...eventForm, imageUrl: e.target.value})}
-                      className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2 font-mono"
-                    />
-                  </div>
+                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Available Tickets</label>
+                  <input type="number" value={eventForm.availableTickets} onChange={e => setEventForm({...eventForm, availableTickets: Number(e.target.value)})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
                 </div>
               </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Description (English) *</label>
-                  <textarea required value={eventForm.description_en} onChange={e => setEventForm({...eventForm, description_en: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5 h-16" />
-                </div>
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Description (Hindi)</label>
-                  <textarea value={eventForm.description_hi} onChange={e => setEventForm({...eventForm, description_hi: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5 h-16" />
+              <div>
+                <ImageUploader label="Event Banner Image" defaultUrl={eventForm.imageUrl} imageType="hero" onUploadSuccess={url => setEventForm({...eventForm, imageUrl: url})} />
+                <div className="mt-1">
+                  <label className="text-[9px] font-mono text-amber-700/70 block mb-0.5">Or paste direct image URL</label>
+                  <input type="text" required value={eventForm.imageUrl} onChange={e => setEventForm({...eventForm, imageUrl: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2 font-mono" />
                 </div>
               </div>
-
-              <div className="flex gap-2 justify-end">
-                <button type="button" onClick={() => setShowAddForm(false)} className="px-4 py-2 text-xs bg-white border border-amber-200 text-amber-900 rounded-lg font-medium transition-colors">Cancel</button>
-                <button type="submit" className="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-bold text-xs shadow transition-colors">Save Event</button>
-              </div>
-            </form>
-          )}
+            </div>
+          </TranslationDrawer>
 
           <div className="bg-white rounded-2xl border border-amber-100 p-5 shadow-sm mb-4">
             <div className="overflow-x-auto">
@@ -1064,6 +1064,7 @@ export const AdminPanel: React.FC = () => {
                                 isActive: e.isActive
                               });
                               setEditingEntityId(e.id);
+                              setDrawerLang('en');
                               setShowAddForm(true);
                             }}
                             className="p-1.5 hover:bg-amber-100 rounded text-amber-850"
@@ -1161,58 +1162,81 @@ export const AdminPanel: React.FC = () => {
               <h3 className="text-base font-serif font-medium text-amber-950">Gurus lineage details</h3>
               <p className="text-[11px] text-amber-800/70 mt-0.5">Edit guru profile grids and biography</p>
             </div>
-            {!showAddForm && (
-              <button
-                onClick={() => {
-                  setEditingEntityId(null);
-                  setGuruForm({
-                    name_en: '', name_hi: '', name_gu: '', name_bn: '',
-                    era: 'Modern Era', country: 'India',
-                    lineage_en: '', lineage_hi: '', lineage_gu: '', lineage_bn: '',
-                    discipleOf_en: '', discipleOf_hi: '', discipleOf_gu: '', discipleOf_bn: '',
-                    photoUrl: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=400',
-                    summary_en: '', summary_hi: '', summary_gu: '', summary_bn: '',
-                    biography_en: '', biography_hi: '', biography_gu: '', biography_bn: '',
-                    birthDate: '', deathDate: '',
-                    birthPlace_en: '', birthPlace_hi: '', birthPlace_gu: '', birthPlace_bn: ''
-                  });
-                  setShowAddForm(true);
-                }}
-                className="px-3.5 py-2 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs rounded-lg transition-all flex items-center gap-1"
-              >
-                <Plus className="w-4 h-4" />
-                Add New Guru
-              </button>
-            )}
+            <button
+              onClick={() => {
+                setEditingEntityId(null);
+                setDrawerLang('en');
+                setGuruForm({
+                  name_en: '', name_hi: '', name_gu: '', name_bn: '',
+                  era: 'Modern Era', country: 'India',
+                  lineage_en: '', lineage_hi: '', lineage_gu: '', lineage_bn: '',
+                  discipleOf_en: '', discipleOf_hi: '', discipleOf_gu: '', discipleOf_bn: '',
+                  photoUrl: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=400',
+                  summary_en: '', summary_hi: '', summary_gu: '', summary_bn: '',
+                  biography_en: '', biography_hi: '', biography_gu: '', biography_bn: '',
+                  birthDate: '', deathDate: '',
+                  birthPlace_en: '', birthPlace_hi: '', birthPlace_gu: '', birthPlace_bn: ''
+                });
+                setShowAddForm(true);
+              }}
+              className="px-3.5 py-2 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs rounded-lg transition-all flex items-center gap-1"
+            >
+              <Plus className="w-4 h-4" />
+              Add New Guru
+            </button>
           </div>
 
-          {showAddForm && (
-            <form onSubmit={handleGuruSubmit} className="bg-amber-50/50 rounded-2xl border border-amber-100 p-6 space-y-4 animate-in slide-in-from-top-4">
-              <h4 className="text-sm font-serif font-bold text-amber-950 pb-2 border-b border-amber-100">
-                {editingEntityId ? 'Modify Guru Profile' : 'Add New Guru Profile'}
-              </h4>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Guru Name (EN) *</label>
-                  <input type="text" required value={guruForm.name_en} onChange={e => setGuruForm({...guruForm, name_en: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
-                </div>
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Guru Name (HI)</label>
-                  <input type="text" value={guruForm.name_hi} onChange={e => setGuruForm({...guruForm, name_hi: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
-                </div>
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Guru Name (GU)</label>
-                  <input type="text" value={guruForm.name_gu} onChange={e => setGuruForm({...guruForm, name_gu: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
-                </div>
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Guru Name (BN)</label>
-                  <input type="text" value={guruForm.name_bn} onChange={e => setGuruForm({...guruForm, name_bn: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
-                </div>
+          <TranslationDrawer
+            open={showAddForm}
+            title={editingEntityId ? 'Edit Guru Profile' : 'Add New Guru'}
+            selectedLang={drawerLang}
+            onLangChange={setDrawerLang}
+            onClose={() => { setShowAddForm(false); setDrawerLang('en'); }}
+            onSave={handleGuruSubmit}
+          >
+            {/* Translation fields */}
+            <div className="space-y-4">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-amber-700 border-b border-amber-100 pb-2">
+                Content · {LANG_LABELS[drawerLang]}
+              </p>
+              <div>
+                <label className="text-[10px] font-bold text-amber-900 block mb-1">Guru Name{drawerLang === 'en' ? ' *' : ''}</label>
+                <input type="text" required={drawerLang === 'en'} value={(guruForm as any)[`name_${drawerLang}`]} onChange={e => setGuruForm({...guruForm, [`name_${drawerLang}`]: e.target.value})} placeholder={drawerLang !== 'en' ? 'Leave blank to use English' : ''} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
+                {drawerLang !== 'en' && <p className="text-[10px] text-amber-400 mt-0.5 italic truncate">EN: {guruForm.name_en || '—'}</p>}
               </div>
+              <div>
+                <label className="text-[10px] font-bold text-amber-900 block mb-1">Knowledge Lineage{drawerLang === 'en' ? ' *' : ''}</label>
+                <input type="text" required={drawerLang === 'en'} value={(guruForm as any)[`lineage_${drawerLang}`]} onChange={e => setGuruForm({...guruForm, [`lineage_${drawerLang}`]: e.target.value})} placeholder={drawerLang !== 'en' ? 'Leave blank to use English' : ''} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
+                {drawerLang !== 'en' && <p className="text-[10px] text-amber-400 mt-0.5 italic truncate">EN: {guruForm.lineage_en || '—'}</p>}
+              </div>
+              <div>
+                <label className="text-[10px] font-bold text-amber-900 block mb-1">Direct Disciple of</label>
+                <input type="text" value={(guruForm as any)[`discipleOf_${drawerLang}`]} onChange={e => setGuruForm({...guruForm, [`discipleOf_${drawerLang}`]: e.target.value})} placeholder={drawerLang !== 'en' ? 'Leave blank to use English' : ''} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
+                {drawerLang !== 'en' && <p className="text-[10px] text-amber-400 mt-0.5 italic truncate">EN: {guruForm.discipleOf_en || '—'}</p>}
+              </div>
+              <div>
+                <label className="text-[10px] font-bold text-amber-900 block mb-1">Summary{drawerLang === 'en' ? ' *' : ''}</label>
+                <input type="text" required={drawerLang === 'en'} value={(guruForm as any)[`summary_${drawerLang}`]} onChange={e => setGuruForm({...guruForm, [`summary_${drawerLang}`]: e.target.value})} placeholder={drawerLang !== 'en' ? 'Leave blank to use English' : ''} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
+                {drawerLang !== 'en' && <p className="text-[10px] text-amber-400 mt-0.5 italic truncate">EN: {guruForm.summary_en || '—'}</p>}
+              </div>
+              <div>
+                <label className="text-[10px] font-bold text-amber-900 block mb-1">Biography{drawerLang === 'en' ? ' *' : ''}</label>
+                <textarea required={drawerLang === 'en'} value={(guruForm as any)[`biography_${drawerLang}`]} onChange={e => setGuruForm({...guruForm, [`biography_${drawerLang}`]: e.target.value})} placeholder={drawerLang !== 'en' ? 'Leave blank to use English' : ''} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5 h-20" />
+                {drawerLang !== 'en' && <p className="text-[10px] text-amber-400 mt-0.5 italic line-clamp-2">EN: {guruForm.biography_en || '—'}</p>}
+              </div>
+              <div>
+                <label className="text-[10px] font-bold text-amber-900 block mb-1">Birth Place</label>
+                <input type="text" value={(guruForm as any)[`birthPlace_${drawerLang}`]} onChange={e => setGuruForm({...guruForm, [`birthPlace_${drawerLang}`]: e.target.value})} placeholder={drawerLang !== 'en' ? 'Leave blank to use English' : ''} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
+                {drawerLang !== 'en' && <p className="text-[10px] text-amber-400 mt-0.5 italic truncate">EN: {guruForm.birthPlace_en || '—'}</p>}
+              </div>
+            </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Guru details */}
+            <div className="space-y-4 pt-4 border-t border-amber-100">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-amber-700 pb-1">Guru Details</p>
+              <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Era (e.g. 15th Century) *</label>
+                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Era *</label>
                   <input type="text" required value={guruForm.era} onChange={e => setGuruForm({...guruForm, era: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
                 </div>
                 <div>
@@ -1220,83 +1244,23 @@ export const AdminPanel: React.FC = () => {
                   <input type="text" required value={guruForm.country} onChange={e => setGuruForm({...guruForm, country: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
                 </div>
                 <div>
-                  <ImageUploader
-                    label="Guru Portrait Photo"
-                    defaultUrl={guruForm.photoUrl}
-                    imageType="thumbnail"
-                    onUploadSuccess={url => setGuruForm({...guruForm, photoUrl: url})}
-                  />
-                  <div className="mt-1">
-                    <label className="text-[9px] font-mono text-amber-700/70 block mb-0.5">Or paste direct image URL</label>
-                    <input
-                      type="text"
-                      required
-                      value={guruForm.photoUrl}
-                      onChange={e => setGuruForm({...guruForm, photoUrl: e.target.value})}
-                      className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2 font-mono"
-                    />
-                  </div>
+                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Birth Date</label>
+                  <input type="text" value={guruForm.birthDate} onChange={e => setGuruForm({...guruForm, birthDate: e.target.value})} placeholder="Oct 31, 1896" className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
+                </div>
+                <div>
+                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Ascension / Death Date</label>
+                  <input type="text" value={guruForm.deathDate} onChange={e => setGuruForm({...guruForm, deathDate: e.target.value})} placeholder="Nov 14, 1977" className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
                 </div>
               </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Knowledge Lineage (EN) *</label>
-                  <input type="text" required value={guruForm.lineage_en} onChange={e => setGuruForm({...guruForm, lineage_en: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
-                </div>
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Knowledge Lineage (HI)</label>
-                  <input type="text" value={guruForm.lineage_hi} onChange={e => setGuruForm({...guruForm, lineage_hi: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
-                </div>
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Knowledge Lineage (GU)</label>
-                  <input type="text" value={guruForm.lineage_gu} onChange={e => setGuruForm({...guruForm, lineage_gu: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
-                </div>
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Knowledge Lineage (BN)</label>
-                  <input type="text" value={guruForm.lineage_bn} onChange={e => setGuruForm({...guruForm, lineage_bn: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
+              <div>
+                <ImageUploader label="Guru Portrait Photo" defaultUrl={guruForm.photoUrl} imageType="thumbnail" onUploadSuccess={url => setGuruForm({...guruForm, photoUrl: url})} />
+                <div className="mt-1">
+                  <label className="text-[9px] font-mono text-amber-700/70 block mb-0.5">Or paste direct image URL</label>
+                  <input type="text" required value={guruForm.photoUrl} onChange={e => setGuruForm({...guruForm, photoUrl: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2 font-mono" />
                 </div>
               </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Direct Disciple of (EN)</label>
-                  <input type="text" value={guruForm.discipleOf_en} onChange={e => setGuruForm({...guruForm, discipleOf_en: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
-                </div>
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Summary (EN) *</label>
-                  <input type="text" required value={guruForm.summary_en} onChange={e => setGuruForm({...guruForm, summary_en: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Biography/History Details (EN) *</label>
-                  <textarea required value={guruForm.biography_en} onChange={e => setGuruForm({...guruForm, biography_en: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5 h-16" />
-                </div>
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Biography/History Details (HI)</label>
-                  <textarea value={guruForm.biography_hi} onChange={e => setGuruForm({...guruForm, biography_hi: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5 h-16" />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Birth Date (e.g. Oct 31, 1896)</label>
-                  <input type="text" value={guruForm.birthDate} onChange={e => setGuruForm({...guruForm, birthDate: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
-                </div>
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Ascension/Death Date (e.g. Nov 14, 1977)</label>
-                  <input type="text" value={guruForm.deathDate} onChange={e => setGuruForm({...guruForm, deathDate: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
-                </div>
-              </div>
-
-              <div className="flex gap-2 justify-end">
-                <button type="button" onClick={() => setShowAddForm(false)} className="px-4 py-2 text-xs bg-white border border-amber-200 text-amber-900 rounded-lg font-medium transition-colors">Cancel</button>
-                <button type="submit" className="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-bold text-xs shadow transition-colors">Save Guru Profile</button>
-              </div>
-            </form>
-          )}
+            </div>
+          </TranslationDrawer>
 
           <div className="bg-white rounded-2xl border border-amber-100 p-5 shadow-sm">
             <div className="overflow-x-auto">
@@ -1335,6 +1299,7 @@ export const AdminPanel: React.FC = () => {
                                 birthPlace_en: g.birthPlace?.en || '', birthPlace_hi: g.birthPlace?.hi || '', birthPlace_gu: g.birthPlace?.gu || '', birthPlace_bn: g.birthPlace?.bn || ''
                               });
                               setEditingEntityId(g.id);
+                              setDrawerLang('en');
                               setShowAddForm(true);
                             }}
                             className="p-1.5 hover:bg-amber-100 rounded text-amber-850"
@@ -1366,53 +1331,56 @@ export const AdminPanel: React.FC = () => {
               <h3 className="text-base font-serif font-medium text-amber-950">Ashram Sanctuary Centers</h3>
               <p className="text-[11px] text-amber-800/70 mt-0.5">Manage details and coordinates of global ashrams displayed on the earth globe</p>
             </div>
-            {!showAddForm && (
-              <button
-                onClick={() => {
-                  setEditingEntityId(null);
-                  setAshramForm({
-                    name_en: '', name_hi: '', name_gu: '', name_bn: '',
-                    city: '', state: '', country: 'India',
-                    latitude: 20.5937, longitude: 78.9629,
-                    coverUrl: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=600',
-                    purpose_en: '', purpose_hi: '', purpose_gu: '', purpose_bn: '',
-                    establishedDate: 'Established, 1975'
-                  });
-                  setShowAddForm(true);
-                }}
-                className="px-3.5 py-2 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs rounded-lg transition-all flex items-center gap-1"
-              >
-                <Plus className="w-4 h-4" />
-                Add New Ashram
-              </button>
-            )}
+            <button
+              onClick={() => {
+                setEditingEntityId(null);
+                setDrawerLang('en');
+                setAshramForm({
+                  name_en: '', name_hi: '', name_gu: '', name_bn: '',
+                  city: '', state: '', country: 'India',
+                  latitude: 20.5937, longitude: 78.9629,
+                  coverUrl: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=600',
+                  purpose_en: '', purpose_hi: '', purpose_gu: '', purpose_bn: '',
+                  establishedDate: 'Established, 1975'
+                });
+                setShowAddForm(true);
+              }}
+              className="px-3.5 py-2 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs rounded-lg transition-all flex items-center gap-1"
+            >
+              <Plus className="w-4 h-4" />
+              Add New Ashram
+            </button>
           </div>
 
-          {showAddForm && (
-            <form onSubmit={handleAshramSubmit} className="bg-amber-50/50 rounded-2xl border border-amber-100 p-6 space-y-4 animate-in slide-in-from-top-4">
-              <h4 className="text-sm font-serif font-bold text-amber-950 pb-2 border-b border-amber-100">
-                {editingEntityId ? 'Modify Ashram Coordinates' : 'Configure New Ashram Location'}
-              </h4>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Ashram Name (EN) *</label>
-                  <input type="text" required value={ashramForm.name_en} onChange={e => setAshramForm({...ashramForm, name_en: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
-                </div>
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Ashram Name (HI)</label>
-                  <input type="text" value={ashramForm.name_hi} onChange={e => setAshramForm({...ashramForm, name_hi: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
-                </div>
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Ashram Name (GU)</label>
-                  <input type="text" value={ashramForm.name_gu} onChange={e => setAshramForm({...ashramForm, name_gu: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
-                </div>
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Ashram Name (BN)</label>
-                  <input type="text" value={ashramForm.name_bn} onChange={e => setAshramForm({...ashramForm, name_bn: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
-                </div>
+          <TranslationDrawer
+            open={showAddForm}
+            title={editingEntityId ? 'Edit Ashram' : 'Add New Ashram'}
+            selectedLang={drawerLang}
+            onLangChange={setDrawerLang}
+            onClose={() => { setShowAddForm(false); setDrawerLang('en'); }}
+            onSave={handleAshramSubmit}
+          >
+            {/* Translation fields */}
+            <div className="space-y-4">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-amber-700 border-b border-amber-100 pb-2">
+                Content · {LANG_LABELS[drawerLang]}
+              </p>
+              <div>
+                <label className="text-[10px] font-bold text-amber-900 block mb-1">Ashram Name{drawerLang === 'en' ? ' *' : ''}</label>
+                <input type="text" required={drawerLang === 'en'} value={(ashramForm as any)[`name_${drawerLang}`]} onChange={e => setAshramForm({...ashramForm, [`name_${drawerLang}`]: e.target.value})} placeholder={drawerLang !== 'en' ? 'Leave blank to use English' : ''} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
+                {drawerLang !== 'en' && <p className="text-[10px] text-amber-400 mt-0.5 italic truncate">EN: {ashramForm.name_en || '—'}</p>}
               </div>
+              <div>
+                <label className="text-[10px] font-bold text-amber-900 block mb-1">Purpose / Mission{drawerLang === 'en' ? ' *' : ''}</label>
+                <textarea required={drawerLang === 'en'} value={(ashramForm as any)[`purpose_${drawerLang}`]} onChange={e => setAshramForm({...ashramForm, [`purpose_${drawerLang}`]: e.target.value})} placeholder={drawerLang !== 'en' ? 'Leave blank to use English' : ''} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5 h-20" />
+                {drawerLang !== 'en' && <p className="text-[10px] text-amber-400 mt-0.5 italic line-clamp-2">EN: {ashramForm.purpose_en || '—'}</p>}
+              </div>
+            </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Ashram details */}
+            <div className="space-y-4 pt-4 border-t border-amber-100">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-amber-700 pb-1">Location Details</p>
+              <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="text-[10px] font-bold text-amber-900 block mb-1">City *</label>
                   <input type="text" required value={ashramForm.city} onChange={e => setAshramForm({...ashramForm, city: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
@@ -1425,54 +1393,28 @@ export const AdminPanel: React.FC = () => {
                   <label className="text-[10px] font-bold text-amber-900 block mb-1">Country *</label>
                   <input type="text" required value={ashramForm.country} onChange={e => setAshramForm({...ashramForm, country: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
                 </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Latitude Coord (e.g. 26.12) *</label>
+                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Established *</label>
+                  <input type="text" required value={ashramForm.establishedDate} onChange={e => setAshramForm({...ashramForm, establishedDate: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
+                </div>
+                <div>
+                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Latitude *</label>
                   <input type="number" step="0.0001" required value={ashramForm.latitude} onChange={e => setAshramForm({...ashramForm, latitude: Number(e.target.value)})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
                 </div>
                 <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Longitude Coord (e.g. 85.36) *</label>
+                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Longitude *</label>
                   <input type="number" step="0.0001" required value={ashramForm.longitude} onChange={e => setAshramForm({...ashramForm, longitude: Number(e.target.value)})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
                 </div>
-                <div>
-                  <ImageUploader
-                    label="Ashram Cover Image"
-                    defaultUrl={ashramForm.coverUrl}
-                    imageType="hero"
-                    onUploadSuccess={url => setAshramForm({...ashramForm, coverUrl: url})}
-                  />
-                  <div className="mt-1">
-                    <label className="text-[9px] font-mono text-amber-700/70 block mb-0.5">Or paste direct image URL</label>
-                    <input
-                      type="text"
-                      required
-                      value={ashramForm.coverUrl}
-                      onChange={e => setAshramForm({...ashramForm, coverUrl: e.target.value})}
-                      className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2 font-mono"
-                    />
-                  </div>
+              </div>
+              <div>
+                <ImageUploader label="Ashram Cover Image" defaultUrl={ashramForm.coverUrl} imageType="hero" onUploadSuccess={url => setAshramForm({...ashramForm, coverUrl: url})} />
+                <div className="mt-1">
+                  <label className="text-[9px] font-mono text-amber-700/70 block mb-0.5">Or paste direct image URL</label>
+                  <input type="text" required value={ashramForm.coverUrl} onChange={e => setAshramForm({...ashramForm, coverUrl: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2 font-mono" />
                 </div>
               </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Purpose Description (EN) *</label>
-                  <textarea required value={ashramForm.purpose_en} onChange={e => setAshramForm({...ashramForm, purpose_en: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5 h-16" />
-                </div>
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Established Phrase (e.g. Established 1970) *</label>
-                  <input type="text" required value={ashramForm.establishedDate} onChange={e => setAshramForm({...ashramForm, establishedDate: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
-                </div>
-              </div>
-
-              <div className="flex gap-2 justify-end">
-                <button type="button" onClick={() => setShowAddForm(false)} className="px-4 py-2 text-xs bg-white border border-amber-200 text-amber-900 rounded-lg font-medium transition-colors">Cancel</button>
-                <button type="submit" className="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-bold text-xs shadow transition-colors">Save Ashram Location</button>
-              </div>
-            </form>
-          )}
+            </div>
+          </TranslationDrawer>
 
           <div className="bg-white rounded-2xl border border-amber-100 p-5 shadow-sm">
             <div className="overflow-x-auto">
@@ -1508,6 +1450,7 @@ export const AdminPanel: React.FC = () => {
                                 establishedDate: a.establishedDate || ''
                               });
                               setEditingEntityId(a.id);
+                              setDrawerLang('en');
                               setShowAddForm(true);
                             }}
                             className="p-1.5 hover:bg-amber-100 rounded text-amber-850"
@@ -1539,88 +1482,68 @@ export const AdminPanel: React.FC = () => {
               <h3 className="text-base font-serif font-medium text-amber-950">Spiritual Blogs Manager</h3>
               <p className="text-[11px] text-amber-800/70 mt-0.5">Author articles, wisdom diaries, or dynamic news posts</p>
             </div>
-            {!showAddForm && (
-              <button
-                onClick={() => {
-                  setEditingEntityId(null);
-                  setBlogForm({
-                    title_en: '', title_hi: '', title_gu: '', title_bn: '',
-                    content_en: '', content_hi: '', content_gu: '', content_bn: '',
-                    category: 'Veda Philosophy', author: 'Ashram Editorial Team',
-                    coverUrl: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=600'
-                  });
-                  setShowAddForm(true);
-                }}
-                className="px-3.5 py-2 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs rounded-lg transition-all flex items-center gap-1"
-              >
-                <Plus className="w-4 h-4" />
-                Add New Blog Post
-              </button>
-            )}
+            <button
+              onClick={() => {
+                setEditingEntityId(null);
+                setDrawerLang('en');
+                setBlogForm({
+                  title_en: '', title_hi: '', title_gu: '', title_bn: '',
+                  content_en: '', content_hi: '', content_gu: '', content_bn: '',
+                  category: 'Veda Philosophy', author: 'Ashram Editorial Team',
+                  coverUrl: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=600'
+                });
+                setShowAddForm(true);
+              }}
+              className="px-3.5 py-2 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs rounded-lg transition-all flex items-center gap-1"
+            >
+              <Plus className="w-4 h-4" />
+              Add New Blog Post
+            </button>
           </div>
 
-          {showAddForm && (
-            <form onSubmit={handleBlogSubmit} className="bg-amber-50/50 rounded-2xl border border-amber-100 p-6 space-y-4 animate-in slide-in-from-top-4">
-              <h4 className="text-sm font-serif font-bold text-amber-950 pb-2 border-b border-amber-100">
-                {editingEntityId ? 'Modify Blog Post' : 'Publish New Blog Post'}
-              </h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Blog Title (EN) *</label>
-                  <input type="text" required value={blogForm.title_en} onChange={e => setBlogForm({...blogForm, title_en: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
-                </div>
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Blog Title (HI)</label>
-                  <input type="text" value={blogForm.title_hi} onChange={e => setBlogForm({...blogForm, title_hi: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
-                </div>
+          <TranslationDrawer
+            open={showAddForm}
+            title={editingEntityId ? 'Edit Blog Post' : 'Add New Blog Post'}
+            selectedLang={drawerLang}
+            onLangChange={setDrawerLang}
+            onClose={() => { setShowAddForm(false); setDrawerLang('en'); }}
+            onSave={handleBlogSubmit}
+          >
+            <div className="space-y-4">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-amber-700 border-b border-amber-100 pb-2">
+                Content · {LANG_LABELS[drawerLang]}
+              </p>
+              <div>
+                <label className="text-[10px] font-bold text-amber-900 block mb-1">Blog Title{drawerLang === 'en' ? ' *' : ''}</label>
+                <input type="text" required={drawerLang === 'en'} value={(blogForm as any)[`title_${drawerLang}`]} onChange={e => setBlogForm({...blogForm, [`title_${drawerLang}`]: e.target.value})} placeholder={drawerLang !== 'en' ? 'Leave blank to use English' : ''} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
+                {drawerLang !== 'en' && <p className="text-[10px] text-amber-400 mt-0.5 italic truncate">EN: {blogForm.title_en || '—'}</p>}
               </div>
+              <div>
+                <label className="text-[10px] font-bold text-amber-900 block mb-1">Content Body{drawerLang === 'en' ? ' *' : ''}</label>
+                <textarea required={drawerLang === 'en'} value={(blogForm as any)[`content_${drawerLang}`]} onChange={e => setBlogForm({...blogForm, [`content_${drawerLang}`]: e.target.value})} placeholder={drawerLang !== 'en' ? 'Leave blank to use English' : ''} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5 h-40" />
+                {drawerLang !== 'en' && <p className="text-[10px] text-amber-400 mt-0.5 italic line-clamp-2">EN: {blogForm.content_en || '—'}</p>}
+              </div>
+            </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Category *</label>
-                  <input type="text" required value={blogForm.category} onChange={e => setBlogForm({...blogForm, category: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
-                </div>
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Author Byline *</label>
-                  <input type="text" required value={blogForm.author} onChange={e => setBlogForm({...blogForm, author: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
-                </div>
-                <div>
-                  <ImageUploader
-                    label="Blog Post Cover Image"
-                    defaultUrl={blogForm.coverUrl}
-                    imageType="thumbnail"
-                    onUploadSuccess={url => setBlogForm({...blogForm, coverUrl: url})}
-                  />
-                  <div className="mt-1">
-                    <label className="text-[9px] font-mono text-amber-700/70 block mb-0.5">Or paste direct image URL</label>
-                    <input
-                      type="text"
-                      required
-                      value={blogForm.coverUrl}
-                      onChange={e => setBlogForm({...blogForm, coverUrl: e.target.value})}
-                      className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2 font-mono"
-                    />
-                  </div>
+            <div className="space-y-4 pt-4 border-t border-amber-100">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-amber-700 pb-1">Post Details</p>
+              <div>
+                <label className="text-[10px] font-bold text-amber-900 block mb-1">Category *</label>
+                <input type="text" required value={blogForm.category} onChange={e => setBlogForm({...blogForm, category: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
+              </div>
+              <div>
+                <label className="text-[10px] font-bold text-amber-900 block mb-1">Author Byline *</label>
+                <input type="text" required value={blogForm.author} onChange={e => setBlogForm({...blogForm, author: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
+              </div>
+              <div>
+                <ImageUploader label="Blog Post Cover Image" defaultUrl={blogForm.coverUrl} imageType="thumbnail" onUploadSuccess={url => setBlogForm({...blogForm, coverUrl: url})} />
+                <div className="mt-1">
+                  <label className="text-[9px] font-mono text-amber-700/70 block mb-0.5">Or paste direct image URL</label>
+                  <input type="text" required value={blogForm.coverUrl} onChange={e => setBlogForm({...blogForm, coverUrl: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2 font-mono" />
                 </div>
               </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Content Body (EN) *</label>
-                  <textarea required value={blogForm.content_en} onChange={e => setBlogForm({...blogForm, content_en: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5 h-32" />
-                </div>
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Content Body (HI)</label>
-                  <textarea value={blogForm.content_hi} onChange={e => setBlogForm({...blogForm, content_hi: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5 h-32" />
-                </div>
-              </div>
-
-              <div className="flex gap-2 justify-end">
-                <button type="button" onClick={() => setShowAddForm(false)} className="px-4 py-2 text-xs bg-white border border-amber-200 text-amber-900 rounded-lg font-medium transition-colors">Cancel</button>
-                <button type="submit" className="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-bold text-xs shadow transition-colors">Publish Post</button>
-              </div>
-            </form>
-          )}
+            </div>
+          </TranslationDrawer>
 
           <div className="bg-white rounded-2xl border border-amber-100 p-5 shadow-sm">
             <div className="overflow-x-auto">
@@ -1653,6 +1576,7 @@ export const AdminPanel: React.FC = () => {
                                 category: b.category || '', author: b.author || '', coverUrl: b.coverUrl || ''
                               });
                               setEditingEntityId(b.id);
+                              setDrawerLang('en');
                               setShowAddForm(true);
                             }}
                             className="p-1.5 hover:bg-amber-100 rounded text-amber-850"
@@ -1686,108 +1610,55 @@ export const AdminPanel: React.FC = () => {
             </div>
           </div>
 
-          <form onSubmit={handleHomepageSubmit} className="bg-white rounded-2xl border border-amber-100 p-6 space-y-6 shadow-sm">
-            {/* Slide Details */}
+          <form onSubmit={handleHomepageSubmit} className="bg-white rounded-2xl border border-amber-100 p-6 space-y-5 shadow-sm">
+            {/* Language selector */}
+            <div className="pb-4 border-b border-amber-100">
+              <p className="text-[10px] font-bold uppercase tracking-wider text-amber-700 mb-2">Content Language</p>
+              <div className="flex gap-2 flex-wrap">
+                {(['en', 'hi', 'gu', 'bn'] as const).map(code => (
+                  <button key={code} type="button" onClick={() => setDrawerLang(code)}
+                    className={`px-3 py-1.5 text-xs rounded-lg font-semibold transition-all ${drawerLang === code ? 'bg-amber-600 text-white shadow-sm' : 'bg-white border border-amber-200 text-amber-800 hover:border-amber-400 hover:bg-amber-50'}`}>
+                    {LANG_LABELS[code]}
+                  </button>
+                ))}
+              </div>
+              {drawerLang !== 'en' && (
+                <p className="text-[10px] text-amber-500 mt-1.5 italic">English shown as reference below each translation field.</p>
+              )}
+            </div>
+
             <div className="space-y-4">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-amber-900 border-b border-amber-100 pb-1.5 font-mono">1. About Us Glassmorphic Section Controls</h4>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">About Us Header Title (EN) *</label>
-                  <input
-                    type="text"
-                    required
-                    value={homepageForm.aboutUsTitle_en}
-                    onChange={e => setHomepageForm({ ...homepageForm, aboutUsTitle_en: e.target.value })}
-                    className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5"
-                  />
-                </div>
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">About Us Header Title (HI)</label>
-                  <input
-                    type="text"
-                    value={homepageForm.aboutUsTitle_hi}
-                    onChange={e => setHomepageForm({ ...homepageForm, aboutUsTitle_hi: e.target.value })}
-                    className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5"
-                  />
-                </div>
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">About Us Header Title (GU)</label>
-                  <input
-                    type="text"
-                    value={homepageForm.aboutUsTitle_gu}
-                    onChange={e => setHomepageForm({ ...homepageForm, aboutUsTitle_gu: e.target.value })}
-                    className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5"
-                  />
-                </div>
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">About Us Header Title (BN)</label>
-                  <input
-                    type="text"
-                    value={homepageForm.aboutUsTitle_bn}
-                    onChange={e => setHomepageForm({ ...homepageForm, aboutUsTitle_bn: e.target.value })}
-                    className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5"
-                  />
-                </div>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-amber-900 border-b border-amber-100 pb-1.5 font-mono">
+                About Us Section · {LANG_LABELS[drawerLang]}
+              </h4>
+              <div>
+                <label className="text-[10px] font-bold text-amber-900 block mb-1">About Us Header Title{drawerLang === 'en' ? ' *' : ''}</label>
+                <input type="text" required={drawerLang === 'en'} value={(homepageForm as any)[`aboutUsTitle_${drawerLang}`]} onChange={e => setHomepageForm({ ...homepageForm, [`aboutUsTitle_${drawerLang}`]: e.target.value })} placeholder={drawerLang !== 'en' ? 'Leave blank to use English' : ''} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
+                {drawerLang !== 'en' && <p className="text-[10px] text-amber-400 mt-0.5 italic truncate">EN: {homepageForm.aboutUsTitle_en || '—'}</p>}
               </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="text-[10px] font-bold text-amber-900 block mb-1">Intro Subtitle / Slogan (EN)</label>
-                  <input
-                    type="text"
-                    required
-                    value={homepageForm.aboutUsSub_en}
-                    onChange={e => setHomepageForm({ ...homepageForm, aboutUsSub_en: e.target.value })}
-                    className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5"
-                  />
-                </div>
-                <div>
-                  <ImageUploader
-                    label="About Us Section Background Image"
-                    defaultUrl={homepageForm.aboutUsBgUrl}
-                    imageType="hero"
-                    onUploadSuccess={url => setHomepageForm({...homepageForm, aboutUsBgUrl: url})}
-                  />
-                  <div className="mt-1">
-                    <label className="text-[9px] font-mono text-amber-700/70 block mb-0.5">Or paste direct image URL</label>
-                    <input
-                      type="text"
-                      required
-                      value={homepageForm.aboutUsBgUrl}
-                      onChange={e => setHomepageForm({ ...homepageForm, aboutUsBgUrl: e.target.value })}
-                      className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2 font-mono"
-                    />
-                  </div>
-                </div>
+              <div>
+                <label className="text-[10px] font-bold text-amber-900 block mb-1">Intro Subtitle / Slogan{drawerLang === 'en' ? ' *' : ''}</label>
+                <input type="text" required={drawerLang === 'en'} value={(homepageForm as any)[`aboutUsSub_${drawerLang}`]} onChange={e => setHomepageForm({ ...homepageForm, [`aboutUsSub_${drawerLang}`]: e.target.value })} placeholder={drawerLang !== 'en' ? 'Leave blank to use English' : ''} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
+                {drawerLang !== 'en' && <p className="text-[10px] text-amber-400 mt-0.5 italic truncate">EN: {homepageForm.aboutUsSub_en || '—'}</p>}
               </div>
+              <div>
+                <label className="text-[10px] font-bold text-amber-900 block mb-1">Purpose / Philosophy Narrative{drawerLang === 'en' ? ' *' : ''}</label>
+                <textarea required={drawerLang === 'en'} value={(homepageForm as any)[`aboutUsDescription_${drawerLang}`]} onChange={e => setHomepageForm({ ...homepageForm, [`aboutUsDescription_${drawerLang}`]: e.target.value })} placeholder={drawerLang !== 'en' ? 'Leave blank to use English' : ''} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5 h-24 font-serif" />
+                {drawerLang !== 'en' && <p className="text-[10px] text-amber-400 mt-0.5 italic line-clamp-2">EN: {homepageForm.aboutUsDescription_en || '—'}</p>}
+              </div>
+            </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-1">
-                  <label className="text-[10px] font-bold text-amber-900 block">Whole Ashram Purpose / Philosophy narrative (English) *</label>
-                  <textarea
-                    required
-                    value={homepageForm.aboutUsDescription_en}
-                    onChange={e => setHomepageForm({ ...homepageForm, aboutUsDescription_en: e.target.value })}
-                    className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5 h-24 font-serif"
-                  />
-                </div>
-                <div className="space-y-1">
-                  <label className="text-[10px] font-bold text-amber-900 block">Whole Ashram Purpose / Philosophy narrative (Hindi)</label>
-                  <textarea
-                    value={homepageForm.aboutUsDescription_hi}
-                    onChange={e => setHomepageForm({ ...homepageForm, aboutUsDescription_hi: e.target.value })}
-                    className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5 h-24 font-serif"
-                  />
-                </div>
+            <div className="pt-4 border-t border-amber-100 space-y-2">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-amber-700">Background Image</p>
+              <ImageUploader label="About Us Section Background Image" defaultUrl={homepageForm.aboutUsBgUrl} imageType="hero" onUploadSuccess={url => setHomepageForm({...homepageForm, aboutUsBgUrl: url})} />
+              <div className="mt-1">
+                <label className="text-[9px] font-mono text-amber-700/70 block mb-0.5">Or paste direct image URL</label>
+                <input type="text" required value={homepageForm.aboutUsBgUrl} onChange={e => setHomepageForm({ ...homepageForm, aboutUsBgUrl: e.target.value })} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2 font-mono" />
               </div>
             </div>
 
             <div className="flex justify-end pt-2 border-t border-amber-50">
-              <button
-                type="submit"
-                className="px-6 py-2.5 bg-amber-600 hover:bg-amber-700 text-white rounded-xl font-bold text-xs tracking-wider uppercase transition-colors shadow-md cursor-pointer"
-              >
+              <button type="submit" className="px-6 py-2.5 bg-amber-600 hover:bg-amber-700 text-white rounded-xl font-bold text-xs tracking-wider uppercase transition-colors shadow-md cursor-pointer">
                 Save Homepage Control Config
               </button>
             </div>
@@ -1923,92 +1794,20 @@ export const AdminPanel: React.FC = () => {
       {activeTab === 'translations' && (
         <div className="space-y-6 animate-in fade-in duration-200">
 
-          {/* Add new translation string */}
-          <div className="bg-white rounded-2xl border border-amber-100 p-6 shadow-sm">
-            <h3 className="text-base font-serif font-medium text-amber-950 mb-1">Add New Text String</h3>
-            <p className="text-xs text-amber-700 mb-4">Enter a key and text in all languages. Key must be unique (e.g. <span className="font-mono bg-amber-50 px-1 rounded">hello_rohit</span>).</p>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <div className="space-y-1 md:col-span-2">
-                <label className="text-[10px] font-bold text-amber-900 block uppercase tracking-wider">Key (unique identifier)</label>
-                <input
-                  type="text"
-                  placeholder="e.g. hello_rohit"
-                  value={newStringKey}
-                  onChange={(e: { target: { value: string } }) => setNewStringKey(e.target.value.toLowerCase().replace(/\s+/g, '_'))}
-                  className="w-full text-xs bg-white border border-amber-200 rounded-lg px-3 py-2 font-mono"
-                />
-              </div>
-              {(['en', 'hi', 'gu', 'bn'] as const).map(lang => (
-                <div key={lang} className="space-y-1">
-                  <label className="text-[10px] font-bold text-amber-900 block uppercase tracking-wider">{lang === 'en' ? 'English' : lang === 'hi' ? 'Hindi' : lang === 'gu' ? 'Gujarati' : 'Bengali'}</label>
-                  <input
-                    type="text"
-                    placeholder={lang === 'en' ? 'Hello I am Rohit' : lang === 'hi' ? 'नमस्ते मैं रोहित हूँ' : lang === 'gu' ? 'હેલ્લો હું રોહિત છું' : 'হ্যালো আমি রোহিত'}
-                    value={newStringValues[lang]}
-                    onChange={(e: { target: { value: string } }) => setNewStringValues(prev => ({ ...prev, [lang]: e.target.value }))}
-                    className="w-full text-xs bg-white border border-amber-200 rounded-lg px-3 py-2 font-serif"
-                  />
-                </div>
-              ))}
-            </div>
-
-            <div className="flex justify-end mt-4">
-              <button
-                onClick={() => {
-                  const key = newStringKey.trim();
-                  if (!key || !newStringValues.en) {
-                    setTranslationMsg({ ok: false, text: 'Key and English text required.' });
-                    return;
-                  }
-                  if (translationDraft[key]) {
-                    setTranslationMsg({ ok: false, text: `Key "${key}" already exists.` });
-                    return;
-                  }
-                  setTranslationDraft((prev: TranslationMap) => ({ ...prev, [key]: { ...newStringValues } }));
-                  setNewStringKey('');
-                  setNewStringValues({ en: '', hi: '', gu: '', bn: '' });
-                  setTranslationMsg({ ok: true, text: `"${key}" added. Click Save All to persist.` });
-                }}
-                className="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl font-bold text-xs flex items-center gap-1.5 transition-colors shadow-sm cursor-pointer"
-              >
-                <Plus className="w-3.5 h-3.5" />
-                Add String
-              </button>
-            </div>
-          </div>
-
           {/* Manage existing strings */}
           <div className="bg-white rounded-2xl border border-amber-100 p-6 shadow-sm">
             <div className="flex items-center justify-between mb-5">
               <div>
                 <h3 className="text-base font-serif font-medium text-amber-950">Manage All Text Strings</h3>
-                <p className="text-xs text-amber-700 mt-0.5">{Object.keys(translationDraft).length} strings — edit any value then Save All.</p>
+                <p className="text-xs text-amber-700 mt-0.5">18 built-in strings — edit any value then Save All.</p>
               </div>
             </div>
 
             <div className="space-y-4 max-h-[600px] overflow-y-auto pr-1">
-              {Object.entries(translationDraft).map(([key, vals]) => (
+              {Object.entries(translationDraft).filter(([key]) => BUILTIN_KEYS.has(key)).map(([key, vals]) => (
                 <div key={key} className="border border-amber-100 rounded-xl p-4 bg-amber-50/30">
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center gap-2">
-                      <span className="font-mono text-[11px] font-bold text-amber-900">{key}</span>
-                      {BUILTIN_KEYS.has(key) && (
-                        <span className="text-[9px] bg-amber-100 text-amber-700 font-bold px-1.5 py-0.5 rounded-full uppercase tracking-wider">Built-in</span>
-                      )}
-                    </div>
-                    {!BUILTIN_KEYS.has(key) && (
-                      <button
-                        onClick={() => setTranslationDraft((prev: TranslationMap) => {
-                          const next = { ...prev };
-                          delete next[key];
-                          return next;
-                        })}
-                        className="p-1 text-rose-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
-                      >
-                        <X className="w-3.5 h-3.5" />
-                      </button>
-                    )}
+                  <div className="mb-3">
+                    <span className="font-mono text-[11px] font-bold text-amber-900">{key}</span>
                   </div>
                   <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
                     {(['en', 'hi', 'gu', 'bn'] as const).map(lang => (
