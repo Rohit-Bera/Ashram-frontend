@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useGlobalContext } from './LangContext';
+import { useGlobalContext } from '../context/LangContext';
 import { X, CreditCard, ShieldCheck, Truck, ShoppingBag, Heart, Sparkles, CheckCircle2, Loader2, ArrowRight } from 'lucide-react';
 import { ShippingAddress, OrderItem } from '../types';
 

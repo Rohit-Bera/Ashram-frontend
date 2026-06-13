@@ -1,6 +1,6 @@
 import React from 'react';
 import { Sparkles, ArrowDown, BookOpen, Scroll, HelpCircle } from 'lucide-react';
-import { useGlobalContext } from './LangContext';
+import { useGlobalContext } from '../context/LangContext';
 import { LocalizedString } from '../types';
 
 interface LineageNode {

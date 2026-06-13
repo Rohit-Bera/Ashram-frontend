@@ -114,6 +114,8 @@ export interface BlogArticle {
   publishDate: string;
   readTime: string;
   imageUrl: string;
+  coverUrl?: string;
+  category?: string;
 }
 
 export interface Testimonial {

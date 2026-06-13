@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { useGlobalContext } from './LangContext';
+import { useGlobalContext } from '../context/LangContext';
 import { Plus, Edit2, Trash2, Check, X, Shield, Settings, TrendingUp, ShoppingBag, Calendar, Users, RefreshCw, BookOpen, Compass, Globe, ChevronLeft, ChevronRight, Languages } from 'lucide-react';
 import { Guru, Ashram, AshramEvent, Product, ProductCategory, LocalizedString, LanguageCode } from '../types';
 import { ImageUploader } from './ImageUploader';
@@ -815,6 +815,7 @@ export const AdminPanel: React.FC = () => {
                     label="Product Image"
                     defaultUrl={productForm.imageUrl}
                     imageType="thumbnail"
+                    entity="products"
                     onUploadSuccess={url => setProductForm({ ...productForm, imageUrl: url })}
                   />
                   <div className="mt-1">
@@ -1005,7 +1006,7 @@ export const AdminPanel: React.FC = () => {
                 </div>
               </div>
               <div>
-                <ImageUploader label="Event Banner Image" defaultUrl={eventForm.imageUrl} imageType="hero" onUploadSuccess={url => setEventForm({...eventForm, imageUrl: url})} />
+                <ImageUploader label="Event Banner Image" defaultUrl={eventForm.imageUrl} imageType="hero" entity="events" onUploadSuccess={url => setEventForm({...eventForm, imageUrl: url})} />
                 <div className="mt-1">
                   <label className="text-[9px] font-mono text-amber-700/70 block mb-0.5">Or paste direct image URL</label>
                   <input type="text" required value={eventForm.imageUrl} onChange={e => setEventForm({...eventForm, imageUrl: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2 font-mono" />
@@ -1253,7 +1254,7 @@ export const AdminPanel: React.FC = () => {
                 </div>
               </div>
               <div>
-                <ImageUploader label="Guru Portrait Photo" defaultUrl={guruForm.photoUrl} imageType="thumbnail" onUploadSuccess={url => setGuruForm({...guruForm, photoUrl: url})} />
+                <ImageUploader label="Guru Portrait Photo" defaultUrl={guruForm.photoUrl} imageType="thumbnail" entity="gurus" onUploadSuccess={url => setGuruForm({...guruForm, photoUrl: url})} />
                 <div className="mt-1">
                   <label className="text-[9px] font-mono text-amber-700/70 block mb-0.5">Or paste direct image URL</label>
                   <input type="text" required value={guruForm.photoUrl} onChange={e => setGuruForm({...guruForm, photoUrl: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2 font-mono" />
@@ -1407,7 +1408,7 @@ export const AdminPanel: React.FC = () => {
                 </div>
               </div>
               <div>
-                <ImageUploader label="Ashram Cover Image" defaultUrl={ashramForm.coverUrl} imageType="hero" onUploadSuccess={url => setAshramForm({...ashramForm, coverUrl: url})} />
+                <ImageUploader label="Ashram Cover Image" defaultUrl={ashramForm.coverUrl} imageType="hero" entity="ashrams" onUploadSuccess={url => setAshramForm({...ashramForm, coverUrl: url})} />
                 <div className="mt-1">
                   <label className="text-[9px] font-mono text-amber-700/70 block mb-0.5">Or paste direct image URL</label>
                   <input type="text" required value={ashramForm.coverUrl} onChange={e => setAshramForm({...ashramForm, coverUrl: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2 font-mono" />
@@ -1536,7 +1537,7 @@ export const AdminPanel: React.FC = () => {
                 <input type="text" required value={blogForm.author} onChange={e => setBlogForm({...blogForm, author: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2.5" />
               </div>
               <div>
-                <ImageUploader label="Blog Post Cover Image" defaultUrl={blogForm.coverUrl} imageType="thumbnail" onUploadSuccess={url => setBlogForm({...blogForm, coverUrl: url})} />
+                <ImageUploader label="Blog Post Cover Image" defaultUrl={blogForm.coverUrl} imageType="thumbnail" entity="blogs" onUploadSuccess={url => setBlogForm({...blogForm, coverUrl: url})} />
                 <div className="mt-1">
                   <label className="text-[9px] font-mono text-amber-700/70 block mb-0.5">Or paste direct image URL</label>
                   <input type="text" required value={blogForm.coverUrl} onChange={e => setBlogForm({...blogForm, coverUrl: e.target.value})} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2 font-mono" />
@@ -1650,7 +1651,7 @@ export const AdminPanel: React.FC = () => {
 
             <div className="pt-4 border-t border-amber-100 space-y-2">
               <p className="text-[11px] font-bold uppercase tracking-wider text-amber-700">Background Image</p>
-              <ImageUploader label="About Us Section Background Image" defaultUrl={homepageForm.aboutUsBgUrl} imageType="hero" onUploadSuccess={url => setHomepageForm({...homepageForm, aboutUsBgUrl: url})} />
+              <ImageUploader label="About Us Section Background Image" defaultUrl={homepageForm.aboutUsBgUrl} imageType="hero" entity="about" onUploadSuccess={url => setHomepageForm({...homepageForm, aboutUsBgUrl: url})} />
               <div className="mt-1">
                 <label className="text-[9px] font-mono text-amber-700/70 block mb-0.5">Or paste direct image URL</label>
                 <input type="text" required value={homepageForm.aboutUsBgUrl} onChange={e => setHomepageForm({ ...homepageForm, aboutUsBgUrl: e.target.value })} className="w-full text-xs bg-white border border-amber-200 rounded-lg p-2 font-mono" />
