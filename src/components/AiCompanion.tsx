@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useGlobalContext } from './LangContext';
+import { useGlobalContext } from '../context/LangContext';
 import { MessageSquare, Send, Sparkles, X, Compass, Loader, Heart } from 'lucide-react';
 
 interface ChatMessage {

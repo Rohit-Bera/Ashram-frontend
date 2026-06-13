@@ -2,9 +2,11 @@ import React, { useState, useRef } from 'react';
 import { UploadCloud, CheckCircle2, AlertCircle, Loader2, RefreshCw } from 'lucide-react';
 
 export type ImagePreset = 'hero' | 'gallery' | 'thumbnail' | 'avatar';
+export type DriveEntity = 'gurus' | 'ashrams' | 'events' | 'products' | 'blogs' | 'testimonials' | 'about';
 
 interface ImageUploaderProps {
   onUploadSuccess: (url: string) => void;
+  entity: DriveEntity;
   defaultUrl?: string;
   label?: string;
   className?: string;
@@ -13,6 +15,7 @@ interface ImageUploaderProps {
 
 export const ImageUploader: React.FC<ImageUploaderProps> = ({
   onUploadSuccess,
+  entity,
   defaultUrl = '',
   label = 'Upload Image Asset',
   className = '',
@@ -68,7 +71,7 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
     formData.append('file', file);
 
     try {
-      const response = await fetch(`/api/upload?type=${imageType}`, {
+      const response = await fetch(`/api/upload?entity=${entity}`, {
         method: 'POST',
         body: formData,
       });

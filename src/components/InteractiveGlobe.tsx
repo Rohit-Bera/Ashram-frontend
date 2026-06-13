@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import Globe from 'react-globe.gl';
-import { useGlobalContext } from './LangContext';
+import { useGlobalContext } from '../context/LangContext';
 import type { Ashram } from '../types';
 import {
   Search, Globe as GlobeIcon, MapPin, ZoomIn, ZoomOut,
