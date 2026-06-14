@@ -16,11 +16,11 @@ export default defineConfig(() => {
       watch: process.env.DISABLE_HMR === 'true' ? null : {},
       proxy: {
         '/api': {
-          target: 'http://localhost:3001',
+          target: process.env.VITE_API_URL,
           changeOrigin: true,
         },
         '/uploads': {
-          target: 'http://localhost:3001',
+          target: process.env.VITE_API_URL,
           changeOrigin: true,
         },
       },
