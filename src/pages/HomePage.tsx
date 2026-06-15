@@ -11,19 +11,19 @@ import { Guru, Ashram } from '../types';
 const HERO_SLIDES = [
   {
     title: { en: 'Welcome to Sri Divine Heritage', hi: 'श्री दिव्य विरासत में आपका स्वागत है', gu: 'શ્રી દિવ્ય વિરાસતમાં તમારું સ્વાગત છે', bn: 'শ্রী দিব্য ঐতিহ্যে আপনাকে স্বাগত' },
-    sub: { en: 'Connecting souls to ancient Gaudiya Vaishnava lineage teachings, world ashrams, and sacred scriptures.', hi: 'प्राचीन गौड़ीय वैष्णव संप्रदाय, विश्व के पावन धामों और पवित्र ग्रंथों से आत्माओं का दिव्य जुड़ाव।', gu: 'પ્રાચીન ગૌડીય વૈષ્ણવ સંપ્રદાય, વિશ્વના પવિત્ર આશ્રમો અને વેદિક ગ્રંથો સાથે જોડાણ.', bn: 'সুপ্রাচীন গৌড়ীয় বৈষ্ণবীয় সাধন-ভজন, বিশ্বব্যাপী বিস্তৃত পবিত্র মন্দির এবং শাস্ত্র গ্রন্থাবলীর সার্থক মেলবন্ধন।' },
+    sub: { en: 'Connecting souls to ancient Kriya Yoga lineage teachings, world ashrams, and sacred scriptures.', hi: 'प्राचीन क्रिया योग संप्रदाय, विश्व के पावन धामों और पवित्र ग्रंथों से आत्माओं का दिव्य जुड़ाव।', gu: 'પ્રાચીન ક્રિયા યોગ સંપ્રદાય, વિશ્વના પવિત્ર આશ્રમો અને વેદિક ગ્રંથો સાથે જોડાણ.', bn: 'সুপ্রাচীন ক্রিয়াযোগের সাধন-ভজন, বিশ্বব্যাপী বিস্তৃত পবিত্র মন্দির এবং শাস্ত্র গ্রন্থাবলীর সার্থক মেলবন্ধন।' },
     action: 'gurus',
     bg: 'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&q=80&w=1200'
   },
   {
     title: { en: 'Discover Auspicious Sacred Spaces', hi: 'पावन भारतीय मंदिरों का दर्शन करें', gu: 'પવિત્ર ભારતીય મંદિરોના દર્શન કરો', bn: 'জগতের পরম পবিত্র ধাম পরিক্রমা' },
-    sub: { en: 'Explore ISKCON Vrindavan, Mayapur Dham, and active communities around the globe through our rotating cosmic globe.', hi: 'घूमते हुए ब्रह्मांडीय ग्लोब के माध्यम से इस्कॉन वृंदावन, मायापुर धाम और वैश्विक आध्यात्मिक केंद्रों के दर्शन करें।', gu: 'ગ્લોબલ ફરતા મેપ દ્વારા ઇસ્કોન વૃંદાવન, માયાપુર ધામ અને વૈશ્વિક કેન્દ્રોની મુલાકાત લો.', bn: 'আমাদের ঘূর্ণায়মান গ্লোবের সাহায্যে মায়াপুর চন্দ্রোদয় মন্দির, শ্রীধাম বৃন্দাবন সহ শাখা মন্দিরসমূহ পরিক্রমা করুন।' },
+    sub: { en: 'Explore the Brahmarshi Satyananda Sannyas Ashram and global spiritual centers.', hi: 'ब्रह्मर्षि सत्यानन्द संन्यास आश्रम और वैश्विक आध्यात्मिक केंद्रों के दर्शन करें।', gu: 'બ્રહ્મર્ષિ સત્યાનંદ સંન્યાસ આશ્રમની મુલાકાત લો.', bn: 'ব্রহ্মর্ষি সত্যানন্দ সন্ন্যাস আশ্রম পরিক্রমা করুন।' },
     action: 'ashrams',
     bg: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&q=80&w=1200'
   },
   {
     title: { en: 'Acquire Genuine Spiritual Items', hi: 'प्रामाणिक आध्यात्मिक भंडार', gu: 'અસલી આધ્યાત્મિક ભંડાર', bn: 'পারমার্থিক মাঙ্গলিক সামগ্রী সংগ্রহ' },
-    sub: { en: 'Invest in original Vrindavan Tulsi malas, organic sandalwood incense, handloomed attire, and high commentaries books.', hi: 'वृंदावन की पावन तुलसी जप माला, प्राकृतिक चंदन धूप, हथकरघा वस्त्र और प्रामाणिक ग्रंथों को प्राप्त करें।', gu: 'વૃંદાવનની પવિત્ર તુલસી માળા, પ્રાકૃતિક ચંદનની અગરબત્તી અને શાસ્ત્રોક્ત પુસ્તકો મેળવો.', bn: 'বৃন্দাবনের খাঁটি তুলসী জপমালা, চন্দন ধূপ, সুতি বস্ত্র ও শ্রীল প্রভুপাদ প্রণীত পরম বৈদিক ভাষ্য গ্রন্থ পরিক্রমা।' },
+    sub: { en: 'Invest in original Kriya Yoga books, meditation mats, and organic sandalwood incense.', hi: 'प्रामाणिक क्रिया योग पुस्तकें, ध्यान चटाई और प्राकृतिक चंदन धूप प्राप्त करें।', gu: 'અસલી આધ્યાત્મિક ભંડાર મેળવો.', bn: 'ক্রিয়াযোগের প্রাচীন গ্রন্থ ও পারমার্থিক সামগ্রী সংগ্রহ।' },
     action: 'store',
     bg: 'https://images.unsplash.com/photo-1602166549142-978079a372e8?auto=format&fit=crop&q=80&w=1200'
   }
@@ -78,7 +78,7 @@ export function HomePage({ onNavigate, onToast, onOpenAuth, onSelectGuru, onSele
             {t(aboutData?.aboutUsTitle) || 'An Oasis of Devotion & Vedic Wisdom'}
           </h3>
           <p className="text-xs md:text-sm text-amber-900 leading-relaxed font-serif">
-            {t(aboutData?.aboutUsDescription) || 'Welcome to Sri Divine Heritage Ashram, a sacred sanctuary dedicated to keeping the flame of ancient Gaudiya Vaishnava teachings alive.'}
+            {t(aboutData?.aboutUsDescription) || 'Welcome to Brahmarshi Satyananda Sannyas Ashram, a sacred sanctuary dedicated to keeping the flame of ancient Kriya Yoga teachings alive.'}
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-amber-950/20">
             {[
@@ -105,7 +105,7 @@ export function HomePage({ onNavigate, onToast, onOpenAuth, onSelectGuru, onSele
           <span className="text-[10px] bg-amber-100 text-amber-800 font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Historical Acharyas</span>
           <h3 className="text-2xl md:text-3xl font-serif text-amber-950 mt-2 font-medium">Meet the Gurus & Spiritual Lineage</h3>
           <p className="text-xs text-amber-700/80 mt-1.5 max-w-xl mx-auto">
-            Learn from the brilliant pure devotees whose elaborate script commentary and dynamic lifestyles spread ancient Indian wisdom globalwide.
+            Learn from the liberated yogis who revived the ancient science of Kriya Yoga.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -131,7 +131,7 @@ export function HomePage({ onNavigate, onToast, onOpenAuth, onSelectGuru, onSele
           <span className="text-[10px] bg-amber-100 text-amber-800 font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Auspicious Calendar</span>
           <h3 className="text-2xl md:text-3xl font-serif text-amber-950 font-medium mt-2">Upcoming Spiritual Festivals</h3>
           <p className="text-xs text-amber-800 mt-1.5 max-w-md mx-auto">
-            Experience dynamic Vedic cultural celebrations, kirtan retreats, fire sacrifices, and grand mahaprasad feasts.
+            Experience dynamic Kriya Yoga retreats, meditation sessions, fire sacrifices, and grand mahaprasad feasts.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -167,7 +167,7 @@ export function HomePage({ onNavigate, onToast, onOpenAuth, onSelectGuru, onSele
               </div>
             </div>
             <p className="text-xs text-amber-900 italic font-serif leading-relaxed">
-              "I am profoundly satisfied with the Bhagavad Gita commented book quality and original sandalwood incense sticks. The aromatic warmth elevates my home temple, filling it with Vrindavan serenity!"
+              "I am profoundly satisfied with the Kriya Yoga books and original sandalwood incense sticks. The aromatic warmth elevates my meditation, filling it with Himalayan serenity!"
             </p>
           </div>
         </div>

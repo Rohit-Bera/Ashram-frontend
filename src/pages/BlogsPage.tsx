@@ -15,7 +15,7 @@ export function BlogsPage({ onToast }: BlogsPageProps) {
         <span className="bg-amber-100 text-amber-800 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Scriptural commentary</span>
         <h3 className="text-3xl font-serif text-amber-950 font-medium">Daily wisdom blog</h3>
         <p className="text-xs text-amber-800/80 leading-relaxed font-serif">
-          Access simplified scientific essays on Japa meditation techniques, law of karma reactions, and active Bhagavad Gita chapter studies.
+          Access simplified scientific essays on Pranayama meditation techniques, spiritual growth, and active Kriya Yoga stages.
         </p>
       </div>
 

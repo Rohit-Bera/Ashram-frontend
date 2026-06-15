@@ -14,7 +14,7 @@ export const AiCompanion: React.FC = () => {
     return [
       {
         sender: 'guru',
-        text: 'Pranams, dear seeker. I am your humble AI spiritual guide companion, here to help share the holy teachings of Lord Chaitanya, Srila Prabhupada, and the wonderful Bhagavad-gita. \n\nHow may I help illuminate your pathway today?'
+        text: 'Pranams, dear seeker. I am your humble AI spiritual guide companion, here to help share the holy teachings of Mahavatar Babaji, Lahiri Mahasaya, and the Kriya Yoga lineage. \n\nHow may I help illuminate your pathway today?'
       }
     ];
   });
@@ -56,7 +56,7 @@ export const AiCompanion: React.FC = () => {
         ...prev,
         {
           sender: 'guru',
-          text: 'Forgive me, dear seeker. A temporal material vibration has disrupted my network. Let us chant *Hare Krishna* and please try again shortly. 🙏'
+          text: 'Forgive me, dear seeker. A temporal material vibration has disrupted my network. Let us chant *Om* and please try again shortly. 🙏'
         }
       ]);
     } finally {
@@ -121,7 +121,7 @@ export const AiCompanion: React.FC = () => {
                 </h3>
                 <p className="text-[10px] text-amber-200/70 flex items-center gap-0.5 mt-0.5">
                   <Sparkles className="w-2.5 h-2.5" />
-                  Lineage: Brahma Gaudiya Sampradaya Grounding
+                  Lineage: Kriya Yoga Parampara Grounding
                 </p>
               </div>
             </div>
@@ -143,10 +143,10 @@ export const AiCompanion: React.FC = () => {
             {/* Disclaimer notice */}
             <div className="bg-amber-50 rounded-xl p-3 border border-amber-100 text-[10px] text-amber-900/60 leading-relaxed text-center font-serif">
               🍃 {t({
-                en: 'This companion answers questions in the light of the Gita, Srimad Bhagavatam, and Caitanya teachings for internal peace.',
-                hi: 'यह मार्गदर्शक आंतरिक शांति के लिए गीता, श्रीमद्भागवतम और चैतन्य महाप्रभु की शिक्षाओं के प्रकाश में उत्तर देता है।',
-                gu: 'આ માર્ગદર્શક આંતરિક શાંતિ મેળવવા માટે ભગવદ ગીતા અને ચૈતન્ય પ્રભુની પવિત્ર શિક્ષાઓ અનુસાર માર્ગદર્શન આપે છે.',
-                bn: 'এই নির্দেশক পরম শান্তি লাভের উদ্দেশ্যে গীতা, ভাগবত এবং মহাপ্রভুর মহিমাময় শিক্ষাবলীর আলোকে পথপ্রদর্শন করে।'
+                en: 'This companion answers questions in the light of the Gita, Yoga Sutras, and Kriya Masters for internal peace.',
+                hi: 'यह मार्गदर्शक आंतरिक शांति के लिए गीता, योग सूत्र और क्रिया योग के गुरुओं की शिक्षाओं के प्रकाश में उत्तर देता है।',
+                gu: 'આ માર્ગદર્શક આંતરિક શાંતિ મેળવવા માટે ભગવદ ગીતા, યોગ સૂત્રો અને ક્રિયા યોગના ગુરુઓની શિક્ષાઓ અનુસાર માર્ગદર્શન આપે છે.',
+                bn: 'এই নির্দেশক পরম শান্তি লাভের উদ্দেশ্যে গীতা, যোগসূত্র এবং ক্রিয়াযোগের গুরুদের মহিমাময় শিক্ষাবলীর আলোকে পথপ্রদর্শন করে।'
               })}
             </div>
 
