@@ -23,7 +23,7 @@ export const GURUS: Guru[] = [
       gu: 'ભક્તિસિદ્ધાંત સરસ્વતી ઠાકુર',
       bn: 'ভক্তিসিদ্ধান্ত সরস্বতী ঠাকুর'
     },
-    photoUrl: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=600', // Represents devotional peaceful atmosphere
+    photoUrl: '/imagehere', // Represents devotional peaceful atmosphere
     summary: {
       en: 'Founder-Acarya of the International Society for Krishna Consciousness (ISKCON). He spread Gaudiya Vaishnavism globally.',
       hi: 'अंतर्राष्ट्रीय कृष्णभावनामृत संघ (ISKCON) के संस्थापक-आचार्य। उन्होंने विश्व स्तर पर गौड़ीय वैष्णव धर्म का प्रचार किया।',
@@ -149,7 +149,7 @@ export const GURUS: Guru[] = [
       gu: 'ઈશ્વર પુરી',
       bn: 'ঈশ্বর পুরী'
     },
-    photoUrl: 'https://images.unsplash.com/photo-1609137144814-7223e75e1cee?auto=format&fit=crop&q=80&w=600', // Beautiful meditative flower background representation
+    photoUrl: '', // Beautiful meditative flower background representation
     summary: {
       en: 'The golden avatar of Sri Krishna who inaugurated the congregational chanting of the holy names (Sankirtana).',
       hi: 'श्री कृष्ण के स्वर्ण अवतार जिन्होंने भगवान के पवित्र नामों के सामूहिक संकीर्तन का शुभारंभ किया।',
@@ -228,10 +228,10 @@ export const ASHRAMS: Ashram[] = [
       gu: 'શ્રી શ્રી કૃષ્ણ બલરામ મંદિર (ઇસ્કોન વૃંદાવન)',
       bn: 'শ্রী শ্রী কৃষ্ণ বলরাম মন্দির (ইস্কন বৃন্দাবন)'
     },
-    coverUrl: 'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&q=80&w=1200', // Beautiful temple complex dome proxy
+    coverUrl: '/imagehere', // Beautiful temple complex dome proxy
     galleryUrls: [
-      'https://images.unsplash.com/photo-1609137144814-7223e75e1cee?auto=format&fit=crop&q=80&w=400',
-      'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=400'
+      '/imagehere',
+      '/imagehere'
     ],
     establishedDate: 'April 20, 1975',
     builtByGuruId: 'prabhupada',
@@ -279,7 +279,7 @@ export const ASHRAMS: Ashram[] = [
       gu: 'વૈદિક તારામંડળ મંદિર (ઇસ્કોન માયાપુર)',
       bn: 'শ্রী মায়াপুর চন্দ্রোদয় মন্দির (ইস্কন মায়াপুর)'
     },
-    coverUrl: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&q=80&w=1200', // Beautiful grand architect dome visual
+    coverUrl: '/imagehere', // Beautiful grand architect dome visual
     galleryUrls: [],
     establishedDate: 'March 11, 1972',
     builtByGuruId: 'chaitanya',
@@ -340,7 +340,7 @@ export const EVENTS: AshramEvent[] = [
       gu: 'વૃંદાવન અને વૈશ્વિક ઇસ્કોન મંદિરો',
       bn: 'শ্রীধাম বৃন্দাবন ও বিশ্বজুড়ে সমস্ত শাখা কেন্দ্র'
     },
-    imageUrl: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=800',
+    imageUrl: '/imagehere',
     isActive: true,
     galleryUrls: [],
     ticketPrice: 0, // Free
@@ -369,7 +369,7 @@ export const EVENTS: AshramEvent[] = [
       gu: 'માયાપુર અને લંડન ટ્રાફાલ્ગર સ્ક્વેર',
       bn: 'শ্রীধাম মায়াপুর ও লণ্ডন ট্রাফালগার স্কয়ার'
     },
-    imageUrl: 'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&q=80&w=800',
+    imageUrl: '/imagehere',
     isActive: true,
     galleryUrls: [],
     ticketPrice: 0,
@@ -398,7 +398,7 @@ export const EVENTS: AshramEvent[] = [
       gu: 'શ્રીધામ માયાપુર આશ્રમ',
       bn: 'শ্রীধাম মায়াপুর প্রধান কেন্দ্র'
     },
-    imageUrl: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&q=80&w=800',
+    imageUrl: '/imagehere',
     isActive: true,
     galleryUrls: [],
     ticketPrice: 0,
@@ -424,7 +424,7 @@ export const PRODUCTS: Product[] = [
     },
     category: 'Books',
     price: 350,
-    imageUrl: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=400', // Represents sacred brown/gold covered book proxy
+    imageUrl: '/imagehere', // Represents sacred brown/gold covered book proxy
     isAvailable: true,
     stock: 500,
     rating: 4.9,
@@ -449,7 +449,7 @@ export const PRODUCTS: Product[] = [
     },
     category: 'Books',
     price: 650,
-    imageUrl: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&q=80&w=400',
+    imageUrl: '/imagehere', // Represents sacred brown/gold covered book proxy
     isAvailable: true,
     stock: 200,
     rating: 5.0,
@@ -473,7 +473,7 @@ export const PRODUCTS: Product[] = [
     },
     category: 'Clothing',
     price: 750,
-    imageUrl: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&q=80&w=400', // Saffron clothing orange textile proxy
+    imageUrl: '/imagehere', // Saffron clothing orange textile proxy
     isAvailable: true,
     stock: 120,
     rating: 4.7,
@@ -495,7 +495,7 @@ export const PRODUCTS: Product[] = [
     },
     category: 'Accessories',
     price: 250,
-    imageUrl: 'https://images.unsplash.com/photo-1596178065887-1198b6148b2b?auto=format&fit=crop&q=80&w=400', // Spiritual beads/woods jewelry proxy
+    imageUrl: '/imagehere', // Spiritual beads/woods jewelry proxy
     isAvailable: true,
     stock: 350,
     rating: 4.8,
@@ -517,7 +517,7 @@ export const PRODUCTS: Product[] = [
     },
     category: 'Spiritual Items',
     price: 150,
-    imageUrl: 'https://images.unsplash.com/photo-1602166549142-978079a372e8?auto=format&fit=crop&q=80&w=400', // Meditative incense sticks proxy
+    imageUrl: '/imagehere', // Meditative incense sticks proxy
     isAvailable: true,
     stock: 800,
     rating: 4.9,
@@ -539,7 +539,7 @@ export const PRODUCTS: Product[] = [
     },
     category: 'Donations',
     price: 2500,
-    imageUrl: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=400', // Warm food/devotional feast plate proxy
+    imageUrl: '/imagehere', // Warm food/devotional feast plate proxy
     isAvailable: true,
     stock: 99999,
     rating: 5.0,
@@ -571,7 +571,7 @@ export const BLOGS: BlogArticle[] = [
     author: 'Gargamuni Swami',
     publishDate: 'May 28, 2026',
     readTime: '5 min read',
-    imageUrl: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=800'
+    imageUrl: '/imagehere',
   }
 ];
 
@@ -579,7 +579,7 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: 't-user1',
     name: 'Michael Henderson',
-    avatarUrl: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=150',
+    avatarUrl: '/imagehere',
     experience: {
       en: 'Visiting the Raman Reti Ashram changed my view of life. The chanting, the peacefulness, and the simple lifestyle brought me back my sanity.',
       hi: 'रमण रेती आश्रम की यात्रा ने मेरे जीवन के प्रति दृष्टिकोण को बदल दिया। दिव्य संकीर्तन, अद्भुत शांति और सादा जीवन प्रणाली ने मुझे फिर से ऊर्जा दी।',
@@ -592,7 +592,7 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: 't-user2',
     name: 'Priyanka Patel',
-    avatarUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150',
+    avatarUrl: '/imagehere',
     experience: {
       en: 'Highly satisfied with the Bhagavad Gita book quality and fast shipping of original incense sticks. The aroma fills my home temple with Vrindavan warmth.',
       hi: 'भगवद गीता पुस्तक की छपाई और शुद्ध धूपबत्ती की त्वरित डिलीवरी से बहुत प्रसन्न हूँ। इनकी दिव्य सुगंध मेरे गृह मंदिर को वृंदावन धाम जैसी ऊर्जा देती है।',
