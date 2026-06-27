@@ -13,19 +13,19 @@ const HERO_SLIDES = [
     title: { en: 'Welcome to Sri Divine Heritage', hi: 'श्री दिव्य विरासत में आपका स्वागत है', gu: 'શ્રી દિવ્ય વિરાસતમાં તમારું સ્વાગત છે', bn: 'শ্রী দিব্য ঐতিহ্যে আপনাকে স্বাগত' },
     sub: { en: 'Connecting souls to ancient Gaudiya Vaishnava lineage teachings, world ashrams, and sacred scriptures.', hi: 'प्राचीन गौड़ीय वैष्णव संप्रदाय, विश्व के पावन धामों और पवित्र ग्रंथों से आत्माओं का दिव्य जुड़ाव।', gu: 'પ્રાચીન ગૌડીય વૈષ્ણવ સંપ્રદાય, વિશ્વના પવિત્ર આશ્રમો અને વેદિક ગ્રંથો સાથે જોડાણ.', bn: 'সুপ্রাচীন গৌড়ীয় বৈষ্ণবীয় সাধন-ভজন, বিশ্বব্যাপী বিস্তৃত পবিত্র মন্দির এবং শাস্ত্র গ্রন্থাবলীর সার্থক মেলবন্ধন।' },
     action: 'gurus',
-    bg: 'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&q=80&w=1200'
+    bg: '/imagehere'
   },
   {
     title: { en: 'Discover Auspicious Sacred Spaces', hi: 'पावन भारतीय मंदिरों का दर्शन करें', gu: 'પવિત્ર ભારતીય મંદિરોના દર્શન કરો', bn: 'জগতের পরম পবিত্র ধাম পরিক্রমা' },
     sub: { en: 'Explore ISKCON Vrindavan, Mayapur Dham, and active communities around the globe through our rotating cosmic globe.', hi: 'घूमते हुए ब्रह्मांडीय ग्लोब के माध्यम से इस्कॉन वृंदावन, मायापुर धाम और वैश्विक आध्यात्मिक केंद्रों के दर्शन करें।', gu: 'ગ્લોબલ ફરતા મેપ દ્વારા ઇસ્કોન વૃંદાવન, માયાપુર ધામ અને વૈશ્વિક કેન્દ્રોની મુલાકાત લો.', bn: 'আমাদের ঘূর্ণায়মান গ্লোবের সাহায্যে মায়াপুর চন্দ্রোদয় মন্দির, শ্রীধাম বৃন্দাবন সহ শাখা মন্দিরসমূহ পরিক্রমা করুন।' },
     action: 'ashrams',
-    bg: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&q=80&w=1200'
+    bg: '/imagehere'
   },
   {
     title: { en: 'Acquire Genuine Spiritual Items', hi: 'प्रामाणिक आध्यात्मिक भंडार', gu: 'અસલી આધ્યાત્મિક ભંડાર', bn: 'পারমার্থিক মাঙ্গলিক সামগ্রী সংগ্রহ' },
     sub: { en: 'Invest in original Vrindavan Tulsi malas, organic sandalwood incense, handloomed attire, and high commentaries books.', hi: 'वृंदावन की पावन तुलसी जप माला, प्राकृतिक चंदन धूप, हथकरघा वस्त्र और प्रामाणिक ग्रंथों को प्राप्त करें।', gu: 'વૃંદાવનની પવિત્ર તુલસી માળા, પ્રાકૃતિક ચંદનની અગરબત્તી અને શાસ્ત્રોક્ત પુસ્તકો મેળવો.', bn: 'বৃন্দাবনের খাঁটি তুলসী জপমালা, চন্দন ধূপ, সুতি বস্ত্র ও শ্রীল প্রভুপাদ প্রণীত পরম বৈদিক ভাষ্য গ্রন্থ পরিক্রমা।' },
     action: 'store',
-    bg: 'https://images.unsplash.com/photo-1602166549142-978079a372e8?auto=format&fit=crop&q=80&w=1200'
+    bg: 'imagehere'
   }
 ];
 
@@ -154,7 +154,7 @@ export function HomePage({ onNavigate, onToast, onOpenAuth, onSelectGuru, onSele
           <div className="bg-white rounded-2xl border border-amber-100 p-5 shadow-sm space-y-4">
             <div className="flex items-center gap-3">
               <img
-                src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=100"
+                src="/imagehere"
                 alt="Priyanka Patel"
                 className="w-12 h-12 rounded-full object-cover border-2 border-amber-100"
               />
