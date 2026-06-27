@@ -30,7 +30,7 @@ export function EventsPage({ onToast, onOpenAuth }: EventsPageProps) {
         <span className="bg-amber-100 text-amber-800 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Divine gatherings</span>
         <h3 className="text-3xl font-serif text-amber-950 font-medium">Auspicious festivals & schedules</h3>
         <p className="text-xs text-amber-800/80 leading-relaxed font-serif">
-          Be a part of world cultural assemblies, holy pilgrimages and active kirtan weeks configured at Vrindavan and other centers.
+          Be a part of world cultural assemblies, holy pilgrimages and active meditation retreats configured at Kolkata and other centers.
         </p>
       </div>
 

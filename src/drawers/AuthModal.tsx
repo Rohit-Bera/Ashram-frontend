@@ -29,7 +29,7 @@ export function AuthModal({ isRegisterMode, onClose, onToast, onNavigate, onMode
       if (ok) {
         onClose();
         setAuthPassword('');
-        onToast('Pranams! Account registered. Saffron server synchronized.');
+        onToast('Account registered. Kriya server synchronized.');
       } else {
         setAuthLoginError('Registration failed. Email may already be in use.');
       }
@@ -39,7 +39,7 @@ export function AuthModal({ isRegisterMode, onClose, onToast, onNavigate, onMode
       if (ok) {
         onClose();
         setAuthPassword('');
-        onToast('Radhe Radhe! Handshake success. Profile synchronized.');
+        onToast('Namaste! Handshake success. Profile synchronized.');
         const stored = localStorage.getItem('ashram_user');
         if (stored) {
           const user = JSON.parse(stored);
@@ -58,7 +58,7 @@ export function AuthModal({ isRegisterMode, onClose, onToast, onNavigate, onMode
       <div className="bg-amber-50 border border-amber-100 w-full max-w-sm rounded-2xl shadow-2xl overflow-hidden text-left animate-in zoom-in-95 duration-150">
         <div className="bg-[#5C4D3C] p-4 text-white flex justify-between items-center border-b border-amber-100/10">
           <span className="font-serif font-bold text-sm text-amber-100">
-            {isRegisterMode ? 'Vedic Devotee Registration' : 'Auspicious Devotee Sign In'}
+            {isRegisterMode ? 'Kriya Yogi Registration' : 'Seeker Sign In'}
           </span>
           <button onClick={onClose} className="text-amber-100"><X className="w-5 h-5" /></button>
         </div>
@@ -70,7 +70,7 @@ export function AuthModal({ isRegisterMode, onClose, onToast, onNavigate, onMode
               <input
                 type="text"
                 required
-                placeholder="Sri Chaitanya Das"
+                placeholder="Sri Yukteswar Das"
                 value={authName}
                 onChange={e => setAuthName(e.target.value)}
                 className="w-full text-xs p-2.5 bg-white border border-amber-200 rounded-lg"
