@@ -26,7 +26,7 @@ export function AshramsPage({ viewedAshram, setViewedAshram, onNavigate, onToast
         <span className="bg-amber-100 text-amber-800 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Divine Sanctuaries</span>
         <h3 className="text-3xl font-serif text-amber-950 font-medium">Explore world Ashrams</h3>
         <p className="text-xs text-amber-800/80 leading-relaxed font-serif">
-          Gain spiritual shelter at ISKCON farm communities and ancient holy city templates. Read daily arati schedules and request guest room bookings.
+          Gain spiritual shelter at Kriya Yoga ashrams and centers. Read daily schedules and request guest room bookings.
         </p>
         <div className="relative max-w-sm mx-auto mt-4">
           <Search className="absolute left-3 top-2.5 w-4 h-4 text-amber-500" />

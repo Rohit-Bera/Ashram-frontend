@@ -529,12 +529,12 @@ export const AppGlobalProvider: React.FC<{ children: ReactNode }> = ({ children 
   // Coupons
   const applyCoupon = (code: string): boolean => {
     const formatted = code.toUpperCase().trim();
-    if (formatted === 'KRISHNA10') {
+    if (formatted === 'KRIYA10') {
       setCouponCode(formatted);
       setDiscountRate(0.10);
       return true;
     }
-    if (formatted === 'SEVABHAKTI') {
+    if (formatted === 'YOGA10') {
       setCouponCode(formatted);
       setDiscountRate(0.15);
       return true;

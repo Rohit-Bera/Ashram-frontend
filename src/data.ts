@@ -2,232 +2,266 @@ import { Guru, Ashram, AshramEvent, Product, BlogArticle, Testimonial } from './
 
 export const GURUS: Guru[] = [
   {
-    id: 'prabhupada',
+    id: 'babaji',
     name: {
-      en: 'A.C. Bhaktivedanta Swami Prabhupada',
-      hi: 'ए.सी. भक्तिवेदांत स्वामी प्रभुपाद',
-      gu: 'એ.સી. ભક્તિવેદાંત સ્વામી પ્રભુપાદ',
-      bn: 'এ.সি. ভক্তিবেদান্ত স্বামী প্রভুপাদ'
+      en: 'Bhagavan Sri Sri Babaji Maharaj',
+      hi: 'भगवान श्री श्री बाबाजी महाराज',
+      gu: 'ભગવાન શ્રી શ્રી બાબાજી મહારાજ',
+      bn: 'ভগবান শ্রী শ্রী বাबाजी মহারাজ'
     },
-    era: 'Modern Era (1896 - 1977)',
-    country: 'India / Global',
+    era: 'Immortal (approx. 600 years)',
+    country: 'Himalayas, India',
     lineage: {
-      en: 'Brahma-Madhva-Gaudiya Sampradaya',
-      hi: 'ब्रह्म-माध्व-गौड़ीय सम्प्रदाय',
-      gu: 'બ્રહ્મ-માધ્વ-ગૌડીય સંપ્રદાય',
-      bn: 'ব্রহ্ম-মাধ্ব-গৌড়ীয় সম্প্রদায়'
+      en: 'Kriya Yoga Lineage (Supreme Guru)',
+      hi: 'क्रिया योग परम्परा (परम गुरु)',
+      gu: 'ક્રિયા યોગ પરંપરા',
+      bn: 'ক্রিয়াযোগ ও গুরুপরম্পরা'
     },
     discipleOf: {
-      en: 'Bhaktisiddhanta Sarasvati Thakura',
-      hi: 'भक्तिसिद्धान्त सरस्वती ठाकुर',
-      gu: 'ભક્તિસિદ્ધાંત સરસ્વતી ઠાકુર',
-      bn: 'ভক্তিসিদ্ধান্ত সরস্বতী ঠাকুর'
+      en: 'Self-Realized',
+      hi: 'स्वयं सिद्ध',
+      gu: 'સ્વયં સિદ્ધ',
+      bn: 'স্বয়ং সিদ্ধ'
     },
+<<<<<<< HEAD
     photoUrl: '/imagehere', // Represents devotional peaceful atmosphere
+=======
+    photoUrl: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=600',
+>>>>>>> ac6c22c1af631600924d465d95793bc99929237d
     summary: {
-      en: 'Founder-Acarya of the International Society for Krishna Consciousness (ISKCON). He spread Gaudiya Vaishnavism globally.',
-      hi: 'अंतर्राष्ट्रीय कृष्णभावनामृत संघ (ISKCON) के संस्थापक-आचार्य। उन्होंने विश्व स्तर पर गौड़ीय वैष्णव धर्म का प्रचार किया।',
-      gu: 'ઇન્ટરનેશનલ સોસાયટી ફોર ક્રિષ્ના કોન્શિયસનેસ (ISKCON) ના સ્થાપક-આચાર્ય. તેમણે વૈશ્વિક સ્તરે ગૌડીય વૈષ્ણવ ધર્મ ફેલાવ્યો.',
-      bn: 'ইন্টারন্যাশনাল সোসাইটি ফর কৃষ্ণ কনশাসনেস (ইস্কন)-এর প্রতিষ্ঠাতা-আচার্য। তিনি বিশ্বজুড়ে গৌড়ীয় বৈষ্ণবধর্মের প্রচার করেছিলেন।'
+      en: 'The immortal yogi of the Himalayas who revived the ancient science of Kriya Yoga.',
+      hi: 'हिमालय के अमर योगी जिन्होंने क्रिया योग के प्राचीन विज्ञान को पुनर्जीवित किया।',
+      gu: 'હિમાલયના અમર યોગી જેમણે ક્રિયા યોગ વિજ્ઞાન પુનર્જીવિત કર્યું.',
+      bn: 'হিমালয়ের অমর যোগী যিনি প্রাচীন ক্রিয়াযোগ বিজ্ঞান পুনরুজ্জীবিত করেছিলেন।'
     },
     biography: {
-      en: 'Srila Prabhupada was born Abhay Charan De in Calcutta. In 1922, he met his spiritual master, Bhaktisiddhanta Sarasvati Thakura, who requested him to present Vedic knowledge in English. In 1965, at age 69, he boarded a cargo ship to New York with just 40 rupees and a trunk of translations, eventually establishing ISKCON and translating dozens of foundational scriptures.',
-      hi: 'श्रील प्रभुपाद का जन्म कलकत्ता में अभय चरण डे के रूप में हुआ था। 1922 में, वे अपने आध्यात्मिक गुरु भक्तिसिद्धान्त सरस्वती ठाकुर से मिले, जिन्होंने उनसे अंग्रेजी में वैदिक ज्ञान प्रस्तुत करने का अनुरोध किया। 1965 में, 69 वर्ष की आयु में, वे केवल 40 रुपये और अनुवादों के एक ट्रंक के साथ न्यूयॉर्क जाने वाले एक मालवाहक जहाज पर सवार हुए, अंततः इस्कॉन की स्थापना की और दर्जनों मौलिक ग्रंथों का अनुवाद किया।',
-      gu: 'શ્રીલ પ્રભુપાદનો જન્મ કલકત્તામાં અભય ચરણ ડે તરીકે થયો હતો. ૧૯૨૨ માં, તેઓ તેમના આધ્યાત્મિક ગુરુ ભક્તિસિદ્ધાંત સરસ્વતી ઠાકુરને મળ્યા, જેમણે તેમને અંગ્રેજીમાં વૈદિક જ્ઞાન રજૂ કરવા વિનંતી કરી. ૧૯૬૫ માં, ૬૯ વર્ષની વયે, તેઓ માત્ર ૪૦ રૂપિયા અને ભાષાંતરોના ટ્રંક સાથે ન્યૂયોર્ક જનારા નૂર વહાણમાં સવાર થયા, આખરે ઇસ્કોનની સ્થાપના કરી અને ડઝનેક પાયાના ગ્રંથોનું ભાષાંતર કર્યું.',
-      bn: 'শ্রীল প্রভুপাদ কলকাতায় অভয় চরণ দে নামে জন্মগ্রহণ করেন। ১৯২২ সালে তিনি তাঁর আধ্যাত্মিক গুরু ভক্তিসিদ্ধান্ত সরস্বতী ঠাকুরের সাথে সাক্ষাৎ করেন, যিনি তাঁকে ইংরেজিতে বৈদিক জ্ঞান প্রচার করতে অনুরোধ করেন। ১৯৬৫ সালে, ৬৯ বছর বয়সে, তিনি মাত্র ৪০ টাকা এবং অনুবাদের একটি ট্রাঙ্ক নিয়ে নিউইয়র্কগামী মালবাহী জাহাজে চড়ে বসেন। তিনি ইসকন প্রতিষ্ঠা করেন এবং বহু গুরুত্বপূর্ণ বৈদিক শাস্ত্রের অনুবাদ সম্পন্ন করেন।'
+      en: 'Babaji Maharaj is a supremely liberated (paramukta) yogi who has retained his physical form in the Himalayas for approximately 600 years. He initiated great masters like Adi Shankaracharya, Kabir Das, and Lahiri Mahasaya.',
+      hi: 'बाबाजी महाराज एक परम मुक्त योगी हैं जो लगभग 600 वर्षों से हिमालय में अपना भौतिक शरीर बनाए हुए हैं। उन्होंने आदि शंकराचार्य, कबीर दास और लाहिड़ी महाशय जैसे महान संतों को दीक्षा दी।',
+      gu: 'બાબાજી મહારાજ એક પરમ મુક્ત યોગી છે જેઓ લગભગ 600 વર્ષથી હિમાલયમાં છે.',
+      bn: 'বাবাজি মহারাজ একজন পরমমুক্ত যোগী যিনি প্রায় ৬০০ বছর ধরে হিমালয়ে অবস্থান করছেন।'
     },
-    birthDate: 'September 1, 1896',
-    deathDate: 'November 14, 1977',
+    birthDate: 'Unknown',
+    deathDate: 'Immortal',
     birthPlace: {
-      en: 'Calcutta, Bengal Presidency, British India',
-      hi: 'कलकत्ता, बंगाल प्रेसीडेंसी, ब्रिटिश भारत',
-      gu: 'કલકત્તા, બંગાળ પ્રેસિડેન્સી, બ્રિટિશ ભારત',
-      bn: 'কলকাতা, বেঙ্গল প্রেসিডেন্সি, ব্রিটিশ ভারত'
+      en: 'Himalayas, India',
+      hi: 'हिमालय, भारत',
+      gu: 'હિમાલય, ભારત',
+      bn: 'হিমালয়, ভারত'
     },
     majorContributions: [
       {
-        en: 'Translation and commentary on Bhagavad-gita As It Is, Srimad-Bhagavatam, and Caitanya-caritamrta.',
-        hi: 'भगवद-गीता यथारूप, श्रीमद्-भागवतम्, और चैतन्य-चरितामृत पर अनुवाद और भाष्य।',
-        gu: 'ભગવદ-ગીતા યથારૂપ, શ્રીમદ-ભાગવતમ અને ચૈતન્ય-ચરિત્રામૃત પર ભાષાંતર અને વિવેચન.',
-        bn: 'ভগবদ্গীতা যথাযথ, শ্রীমদ্ভগবতম্ এবং চৈতন্যচরিতামৃত গ্রন্থের অনুবাদ ও ভাষ্য রচনা।'
-      },
-      {
-        en: 'Establishing over 108 temples, farm communities, and ashrams worldwide.',
-        hi: 'विश्वभर में 108 से अधिक मंदिरों, कृषि समुदायों और आश्रमों की स्थापना।',
-        gu: 'વિશ્વભરમાં ૧૦૮ થી વધુ મંદિરો, કૃષિ સમુદાયો અને આશ્રમોની સ્થાપના.',
-        bn: 'বিশ্বজুড়ে ১০৮টিরও বেশি মন্দির, কৃষি খামার এবং আশ্রমের প্রতিষ্ঠা।'
-      },
-      {
-        en: 'Inaugurating the global Food for Life program for distributing sacred vegetarian food (Prasadam).',
-        hi: 'पवित्र शाकाहारी भोजन (प्रसादम) बांटने के लिए वैश्विक "फूड फॉर लाइफ" कार्यक्रम का उद्घाटन।',
-        gu: 'પવિત્ર શાકાહારી ભોજન (પ્રસાદમ) વિતરણ માટે વૈશ્વિક "ફૂડ ફોર લાઈફ" કાર્યક્રમ શરૂ કર્યો.',
-        bn: 'পবিত্র নিরামিষ ভোজন (প্রসাদ) বিতরণের জন্য বিশ্বব্যাপী "ফুড ফর লাইফ" কর্মসূচির শুভ সূচনা।'
+        en: 'Reviving the ancient science of Kriya Yoga and initiating Lahiri Mahasaya.',
+        hi: 'क्रिया योग के प्राचीन विज्ञान को पुनर्जीवित करना और लाहिड़ी महाशय को दीक्षा देना।',
+        gu: 'ક્રિયા યોગના પ્રાચીન વિજ્ઞાનને પુનર્જીવિત કરવું.',
+        bn: 'প্রাচীন ক্রিয়াযোগ বিজ্ঞান পুনরুজ্জীবিত করা।'
       }
     ],
     timeline: [
       {
-        year: '1896',
-        title: { en: 'Auspicious Birth', hi: 'शुभ जन्म', gu: 'શુભ જન્મ', bn: 'শুভ জন্ম' },
+        year: '1861',
+        title: { en: 'Initiation of Lahiri Mahasaya', hi: 'लाहिड़ी महाशय की दीक्षा', gu: 'લાહિડી મહાશયની દીક્ષા', bn: 'লাহিড়ী মহাশয়কে দীক্ষাদান' },
         description: {
-          en: 'Born on Nandotsava day to a pious Vaishnava family in Calcutta.',
-          hi: 'कलकत्ता में एक धर्मपरायण वैष्णव परिवार में नंदोत्सव के दिन जन्म।',
-          gu: 'કલકત્તામાં ધર્મનિષ્ઠ વૈષ્ણવ પરિવારમાં નંદોત્સવના દિવસે જન્મ.',
-          bn: 'কলকাতায় এক পরম বৈষ্ণব পরিবারে নন্দোৎসবের পুণ্য তিথিতে জন্মগ্রহণ করেন।'
-        }
-      },
-      {
-        year: '1922',
-        title: { en: 'Meeting the Master', hi: 'गुरुदेव से भेंट', gu: 'ગુરુદેવ સાથે મુલાકાત', bn: 'শ্রীগুরু সাক্ষাৎ' },
-        description: {
-          en: 'Met Bhaktisiddhanta Sarasvati Thakura, who instructed him to teach localized wisdom in English.',
-          hi: 'भक्तिसिद्धान्त सरस्वती ठाकुर से मुलाकात हुई, जिन्होंने उन्हें अंग्रेजी में ज्ञान प्रचार का आदेश दिया।',
-          gu: 'ભક્તિસિદ્ધાંત સરસ્વતી ઠાકુરને મળ્યા, જેમણે તેમને અંગ્રેજીમાં વૈદિક જ્ઞાન ફેલાવવાનો આદેશ આપ્યો.',
-          bn: 'ভক্তিসিদ্ধান্ত সরস্বতী ঠাকুরের সাক্ষাৎ লাভ, যিনি তাঁকে ইংরেজিতে বৈদিক দর্শন প্রচারের নির্দেশ দেন।'
-        }
-      },
-      {
-        year: '1965',
-        title: { en: 'Journey on Jaladuta', hi: 'जलदूत जलयात्रा', gu: 'જલદૂત જલયાત્રા', bn: 'জলদূতে মহাসফর' },
-        description: {
-          en: 'Travelled to USA on cargo ship Jaladuta, surviving two heart attacks at sea.',
-          hi: 'मालवाहक जहाज "जलदूत" पर अमेरिका की यात्रा की, समुद्र में दो दिल के दौरों से बचे।',
-          gu: 'માલવાહક જહાજ "જલદૂત" પર અમેરિકા પ્રવાસ કર્યો, દરિયામાં બે વાર હાર્ટ એટેકથી બચ્યા.',
-          bn: 'মালবাহী জাহাজ ‘জলদূত’-এ চড়ে মার্কিন মুলুকে যাত্রা, পথিমধ্যে দু’দুবার হৃদরোগের আক্রমণ সত্ত্বেও রক্ষা পান।'
-        }
-      },
-      {
-        year: '1966',
-        title: { en: 'Incorporation of ISKCON', hi: 'इस्कॉन की स्थापना', gu: 'ઇસ્કોનની સ્થાપના', bn: 'ইস্কন প্রতিষ্ঠা' },
-        description: {
-          en: 'Registered ISKCON in New York City, initiating the worldwide Hare Krishna movement.',
-          hi: 'न्यूयॉर्क शहर में इस्कॉन का पंजीकरण किया, जिससे दुनिया भर में हरे कृष्ण आंदोलन की शुरुआत हुई।',
-          gu: 'ન્યૂયોર્ક શહેરમાં ઇસ્કોનની નોંધણી કરાવી વૈશ્વિક હરે કૃષ્ણ આંદોલનની શરૂઆત કરી.',
-          bn: 'নিউ ইয়র্ক শহরে আনুষ্ঠানিকভাবে ইসকনের পত্তন করেন, যা বিশ্বজুড়ে হরে কৃষ্ণ আন্দোলন ছড়িয়ে দেয়।'
+          en: 'Initiated Lahiri Mahasaya into Kriya Yoga in a Himalayan cave.',
+          hi: 'हिमालय की एक गुफा में लाहिड़ी महाशय को क्रिया योग की दीक्षा दी।',
+          gu: 'હિમાલયની ગુફામાં લાહિડી મહાશયને ક્રિયા યોગની દીક્ષા આપી.',
+          bn: 'হিমালয়ের একটি গুহায় লাহিড়ী মহাশয়কে ক্রিয়াযোগে দীক্ষা দেন।'
         }
       }
     ],
     teachings: [
       {
-        id: 't-1',
+        id: 't-babaji',
         title: {
-          en: 'Simple Living, High Thinking',
-          hi: 'सादा जीवन, उच्च विचार',
-          gu: 'સાદું જીવન, ઉચ્ચ વિચાર',
-          bn: 'সরল জীবন, উন্নত চিন্তা'
+          en: 'Humility and Equal Vision',
+          hi: 'विनम्रता और समदृष्टि',
+          gu: 'નમ્રતા અને સમાન દ્રષ્ટિ',
+          bn: 'নম্রতা ও সমদৃষ্টি'
         },
         type: 'quote',
         content: {
-          en: '"Simple living and high thinking is the real solution to modern material anxieties. Human life is meant for self-realization, not artificial luxury."',
-          hi: '"सादा जीवन और उच्च विचार आधुनिक भौतिक चिंताओं का वास्तविक समाधान है। मानव जीवन आत्म-साक्षात्कार के लिए है, कृत्रिम विलासिता के लिए नहीं।"',
-          gu: '"સાદું જીવન અને ઉચ્ચ વિચાર એ આધુનિક ભૌતિક ચિંતાઓનો વાસ્તવિક ઉકેલ છે. માનવ જીવન આત્મ-સાક્ષાત્કાર માટે છે, કૃત્રિમ ભોગવિલાસ માટે નહીં."',
-          bn: '"সরল জীবনযাপন ও উন্নত চিন্তাভাবনাই আধুনিক জাগতিক দুশ্চিন্তার সত্যিকারের সমাধান। মানব জীবন আত্মোপলব্ধির উদ্দেশ্যে নিবেদিত, কৃত্রিম বিলাসিতার জন্য নয়।"'
+          en: '"By washing the dirty brass pot of an ordinary sadhu, one learns the ultimate lesson of humility and equal vision."',
+          hi: '"एक साधारण साधु के गंदे पीतल के बर्तन को धोने से विनम्रता और समदृष्टि का अंतिम पाठ सीखा जाता है।"',
+          gu: '"સામાન્ય સાધુના વાસણો ધોવાથી નમ્રતાનો પાઠ શીખવા મળે છે."',
+          bn: '"একজন সাধারণ সাধুর বাসন মাজা থেকে নম্রতার পরম শিক্ষা পাওয়া যায়।"'
         }
       }
     ],
-    relatedAshramIds: ['vrindavan-temple', 'mayapur-chandradoya'],
-    relatedEventIds: ['ev-ratha-yatra', 'ev-janmashtami']
+    relatedAshramIds: ['brahmarshi-ashram'],
+    relatedEventIds: []
   },
   {
-    id: 'chaitanya',
+    id: 'lahiri-mahasaya',
     name: {
-      en: 'Sri Chaitanya Mahaprabhu',
-      hi: 'श्री चैतन्य महाप्रभु',
-      gu: 'શ્રી ચૈતન્ય મહાપ્રભુ',
-      bn: 'শ্রী চৈতন্য মহাপ্রভু'
+      en: 'Sri Sri Lahiri Baba (Shyamacharan Lahiri Mahasaya)',
+      hi: 'श्री श्री लाहिड़ी बाबा (श्यामाचरण लाहिड़ी महाशय)',
+      gu: 'શ્રી શ્રી લાહિડી બાબા',
+      bn: 'শ্রী শ্রী লাহিড়ী বাবা (শ্যামাচরণ লাহিড়ী মহাশয়)'
     },
-    era: 'Medieval Era (1486 - 1534)',
-    country: 'West Bengal, India',
+    era: 'Modern Era',
+    country: 'India',
     lineage: {
-      en: 'Gaudiya Sampradaya Original Teacher',
-      hi: 'गौड़ीय सम्प्रदाय के मूल प्रवर्तक',
-      gu: 'ગૌડીય સંપ્રદાયના મૂળ પ્રવર્તક',
-      bn: 'গৌড়ীয় বৈষ্ণবধর্মের পরম তত্ত্ব'
+      en: 'Kriya Yoga Lineage',
+      hi: 'क्रिया योग परम्परा',
+      gu: 'ક્રિયા યોગ પરંપરા',
+      bn: 'ক্রিয়াযোগ ও গুরুপরম্পরা'
     },
     discipleOf: {
-      en: 'Ishvara Puri',
-      hi: 'ईश्वर पुरी',
-      gu: 'ઈશ્વર પુરી',
-      bn: 'ঈশ্বর পুরী'
+      en: 'Babaji Maharaj',
+      hi: 'बाबाजी महाराज',
+      gu: 'બાબાજી મહારાજ',
+      bn: 'বাবাজি মহারাজ'
     },
+<<<<<<< HEAD
     photoUrl: '', // Beautiful meditative flower background representation
+=======
+    photoUrl: 'https://images.unsplash.com/photo-1609137144814-7223e75e1cee?auto=format&fit=crop&q=80&w=600',
+>>>>>>> ac6c22c1af631600924d465d95793bc99929237d
     summary: {
-      en: 'The golden avatar of Sri Krishna who inaugurated the congregational chanting of the holy names (Sankirtana).',
-      hi: 'श्री कृष्ण के स्वर्ण अवतार जिन्होंने भगवान के पवित्र नामों के सामूहिक संकीर्तन का शुभारंभ किया।',
-      gu: 'શ્રી કૃષ્ણના સુવર્ણ અવતાર જેમણે પવિત્ર નામોના સામૂહિક સંકીર્તન (સંકિર્તન) ની શરૂઆત કરી.',
-      bn: 'শ্রীকৃষ্ণের স্বর্ণাবতার যিনি হরিনাম সংকীর্তন আন্দোলনের সূচনা করেছিলেন।'
+      en: 'A householder yogi who propagated Kriya Yoga to ordinary people.',
+      hi: 'एक गृहस्थ योगी जिन्होंने आम लोगों तक क्रिया योग का प्रचार किया।',
+      gu: 'એક ગૃહસ્થ યોગી જેમણે સામાન્ય લોકોમાં ક્રિયા યોગનો પ્રચાર કર્યો.',
+      bn: 'একজন গৃহস্থ যোগী যিনি সাধারণ মানুষের মাঝে ক্রিয়াযোগ প্রচার করেছিলেন।'
     },
     biography: {
-      en: 'Born under a neem tree in Navadvip, Bengal, as Nimai Pandit, He was a brilliant scholar. After initiation from Ishvara Puri in Gaya, He exhibited overwhelming symptoms of love of God. He spent His life singing the Hare Krishna Mahamantra and dancing through India, establishing the theological framework of Acintya Bheda Abheda (inconceivable oneness and difference).',
-      hi: 'बंगाल के नवद्वीप में नीम के पेड़ के नीचे निमाई पंडित के रूप में जन्मे, वे एक प्रखर विद्वान थे। गया में ईश्वर पुरी से दीक्षा लेने के बाद, उन्होंने भगवद्-प्रेम के दिव्य लक्षण प्रदर्शित किए। उन्होंने अपना जीवन हरे कृष्ण महामंत्र के संकीर्तन और संपूर्ण भारत में नृत्य करते हुए व्यतीत किया।',
-      gu: 'બંગાળના નવદ્વીપમાં લીમડાના ઝાડ નીચે નિમાઈ પંડિત તરીકે જન્મેલા, તેઓ અત્યંત પ્રતિભાશાળી વિદ્વાન હતા. ગયામાં ઈશ્વર પુરી પાસેથી દીક્ષા લીધા પછી, તેમણે ભગવદ્-પ્રેમના દિવ્ય લક્ષણો પ્રગટ કર્યા. તેમણે આખું જીવન હરે કૃષ્ણ મહામંત્રના સંકીર્તનમાં વિતાવ્યું.',
-      bn: 'বঙ্গদেশের নবদ্বীপে নিম গাছের নিচে নিমাই পণ্ডিত নামে জন্মগ্রহণকারী মহাপ্রভু ছিলেন এক অসাধারণ পণ্ডিত। গয়ায় শ্রীঈশ্বর পুরীর কাছে দীক্ষা গ্রহণের পর তাঁর অন্তরে দিব্য ভগবৎ-প্রেম জাগ্রত হয়। তিনি তাঁর জীবন কৃষ্ণনাম সংকীর্তন ও সমগ্র ভারতে ভক্তি প্রচারে উৎসর্গ করেছিলেন।'
+      en: 'Lahiri Mahasaya was a householder who was deeply moved when Babaji restored his memories of past lives. Babaji instructed him to remain a householder so that ordinary people lost in worldly illusions could have an accessible path to God-realization.',
+      hi: 'लाहिड़ी महाशय एक गृहस्थ थे। बाबाजी ने उन्हें गृहस्थ रहने का निर्देश दिया ताकि दुनिया के भ्रम में खोए हुए आम लोगों को ईश्वर प्राप्ति का सुलभ मार्ग मिल सके।',
+      gu: 'લાહિડી મહાશય એક ગૃહસ્થ હતા જેમણે સામાન્ય લોકોને ઈશ્વર પ્રાપ્તિનો માર્ગ બતાવ્યો.',
+      bn: 'লাহিড়ী মহাশয় একজন গৃহস্থ ছিলেন যাঁকে বাবাজি মহারাজ গৃহস্থ জীবনে থেকেই ঈশ্বর প্রাপ্তির পথ প্রদর্শনের নির্দেশ দেন।'
     },
-    birthDate: 'February 18, 1486',
-    deathDate: 'June 14, 1534',
+    birthDate: 'September 30, 1828',
+    deathDate: 'September 26, 1895',
     birthPlace: {
-      en: 'Sridham Mayapur, Bengal, India',
-      hi: 'श्रीधाम मायापुर, बंगाल, भारत',
-      gu: 'શ્રીધામ માયાપુર, બંગાળ, ભારત',
-      bn: 'শ্রীধাম মায়াপুর, পশ্চিমবঙ্গ, ভারত'
+      en: 'Ghurni, Bengal Presidency, British India',
+      hi: 'घूर्णी, बंगाल प्रेसीडेंसी, ब्रिटिश भारत',
+      gu: 'ઘૂર્ણી, બંગાળ, બ્રિટિશ ભારત',
+      bn: 'ঘূর্ণী, বেঙ্গল প্রেসিডেন্সি, ব্রিটিশ ভারত'
     },
     majorContributions: [
       {
-        en: 'Establishing the congregational chanting of the Holy Names (Sankirtana) as the prime processes of the age.',
-        hi: 'पवित्र नामों के संकीर्तन को इस कलयुग का परम धर्म घोषित करना।',
-        gu: 'પવિત્ર નામોના સંકીર્તનને આ કળિયુગનો મુખ્ય ધર્મ સ્થાપિત કરવો.',
-        bn: 'যুগধর্ম হিসেবে হরিনাম সংকীর্তনকে সর্বত্র ছড়িয়ে দেওয়া।'
-      },
-      {
-        en: 'Composing the Siksastakam, eight deep verses loaded with pure devotional philosophy.',
-        hi: 'शिक्षाष्टकम् की रचना, जो शुद्ध भक्ति दर्शन से परिपूर्ण आठ श्लोक हैं।',
-        gu: 'શિક્ષાષ્ટકમની રચના કરવી, જે શુદ્ધ ભક્તિ દર્શનથી ભરેલા આઠ શ્લોકો છે.',
-        bn: 'শিক্ষাষ্টকম রচনা, যা পরম ভক্তি দর্শনে সংবলিত আটটি পবিত্র শ্লোক।'
+        en: 'Synthesized the four major yogas and organized Kriya Yoga into four progressive stages.',
+        hi: 'चार प्रमुख योगों का संश्लेषण किया और क्रिया योग को चार प्रगतिशील चरणों में व्यवस्थित किया।',
+        gu: 'ક્રિયા યોગને ચાર પ્રગતિશીલ તબક્કામાં ગોઠવ્યું.',
+        bn: 'চারটি প্রধান যোগের সমন্বয় সাধন এবং ক্রিয়াযোগকে চারটি স্তরে বিন্যস্ত করা।'
       }
     ],
     timeline: [
       {
-        year: '1486',
-        title: { en: 'Appearance in Navadvip', hi: 'नवद्वीप में प्राकट्य', gu: 'નવદ્વીપમાં પ્રાકટ્ય', bn: 'শুভ আবির্ভাব' },
+        year: '1861',
+        title: { en: 'Initiation', hi: 'दीक्षा', gu: 'દીક્ષા', bn: 'দীক্ষাদান' },
         description: {
-          en: 'Appeared during a lunar eclipse in Mayapur while everyone chanted Hari.',
-          hi: 'मायापुर में चंद्र ग्रहण के दौरान प्रकट हुए, जब सभी लोग हरि नाम का जाप कर रहे थे।',
-          gu: 'માયાપુરમાં ચંદ્રગ્રહણ દરમિયાન પ્રગટ થયા, જ્યારે લોકો હરિ નામનું સંકીર્તન કરી રહ્યા હતા.',
-          bn: 'চন্দ্রগ্রহণকালে শ্রীধাম মায়াপুরে আবির্भूत হন, যখন চারদিক হরিনামে মুখরিত ছিল।'
+          en: 'Received Kriya Yoga initiation from Babaji Maharaj.',
+          hi: 'बाबाजी महाराज से क्रिया योग की दीक्षा प्राप्त की।',
+          gu: 'બાબાજી મહારાજ પાસેથી ક્રિયા યોગની દીક્ષા લીધી.',
+          bn: 'বাবাজি মহারাজের নিকট ক্রিয়াযোগের দীক্ষা গ্রহণ।'
         }
       }
     ],
     teachings: [
       {
-        id: 't-2',
+        id: 't-lahiri',
         title: {
-          en: 'Trnad api sunicena (Humility)',
-          hi: 'तृणादपि सुनीचेन (विनम्रता)',
-          gu: 'તૃણાદપિ સુનીચેન (નમ્રતા)',
-          bn: 'তৃণাদপি সুনীচেন (নম্রতা)'
+          en: 'Tapasya, Svadhyaya, Ishvara Pranidhana',
+          hi: 'तपस्या, स्वाध्याय, ईश्वर प्रणिधान',
+          gu: 'તપસ્યા, સ્વાધ્યાય, ઈશ્વર પ્રણિધાન',
+          bn: 'তপস্যা, স্বাধ্যায়, ঈশ্বর প্রণিধান'
         },
         type: 'quote',
         content: {
-          en: '"One should chant the holy name of the Lord in a humble state of mind, thinking oneself lower than the straw in the street; one should be more tolerant than a tree, devoid of all sense of false prestige, and should be ready to offer all respect to others."',
-          hi: '"मनुष्य को स्वयं को मार्ग के तिनके से भी तुच्छ मानकर, अत्यंत नम्र भाव से निरंतर भगवान के पवित्र नाम का जाप करना चाहिए; उसे वृक्ष से भी अधिक सहनशील होना चाहिए, मिथ्या प्रतिष्ठा की भावना से रहित होना चाहिए और दूसरों को पूरा सम्मान देना चाहिए।"',
-          gu: '"રોડ પરના તણખલા કરતાં પણ પોતાને વધારે વિનમ્ર માની ભગવાનના પવિત્ર નામનું સ્મરણ કરવું જોઈએ; વૃક્ષ કરતાં પણ વધુ સહનશીલ બનીને તમામ અહંકાર તજી અન્યોને આદર આપવો જોઈએ."',
-          bn: '"তৃণ অপেক্ষাও নিজেকে ক্ষুদ্র মনে করে, বৃক্ষের ন্যায় সহিষ্ণু হয়ে, নিজে অমানী হয়ে অন্যকে মান দিয়ে সর্বদা হরিনাম কীর্তন করা কর্তব্য।"'
+          en: '"Kriya Yoga consists of physical discipline, self-study, and mental surrender to God."',
+          hi: '"क्रिया योग में शारीरिक अनुशासन, स्वाध्याय और भगवान के प्रति मानसिक समर्पण शामिल है।"',
+          gu: '"ક્રિયા યોગમાં શારીરિક શિસ્ત, સ્વાધ્યાય અને ઈશ્વર પ્રત્યે સમર્પણ છે."',
+          bn: '"ক্রিয়াযোগ শারীরিক সংযম, স্বাধ্যায় এবং ভগবানের প্রতি মানসিক সমর্পণের সমষ্টি।"'
         }
       }
     ],
-    relatedAshramIds: ['mayapur-chandradoya'],
-    relatedEventIds: ['ev-gaura-purnima', 'ev-ratha-yatra']
+    relatedAshramIds: ['brahmarshi-ashram'],
+    relatedEventIds: []
+  },
+  {
+    id: 'sriyukteswar',
+    name: {
+      en: 'Swami Sriyukteswar Giri',
+      hi: 'स्वामी श्रीयुक्तेश्वर गिरि',
+      gu: 'સ્વામી શ્રીયુક્તેશ્વર ગિરિ',
+      bn: 'স্বামী শ্রীযুক্তেশ্বর গিরি'
+    },
+    era: 'Modern Era',
+    country: 'India',
+    lineage: {
+      en: 'Kriya Yoga Lineage',
+      hi: 'क्रिया योग परम्परा',
+      gu: 'ક્રિયા યોગ પરંપરા',
+      bn: 'ক্রিয়াযোগ ও গুরুপরম্পরা'
+    },
+    discipleOf: {
+      en: 'Lahiri Mahasaya',
+      hi: 'लाहिड़ी महाशय',
+      gu: 'લાહિડી મહાશય',
+      bn: 'লাহিড়ী মহাশয়'
+    },
+    photoUrl: 'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&q=80&w=600',
+    summary: {
+      en: 'A great Kriya Yogi and astrologer who explained the rapid spiritual evolution through Kriya Yoga.',
+      hi: 'एक महान क्रिया योगी और ज्योतिषी जिन्होंने क्रिया योग के माध्यम से तीव्र आध्यात्मिक विकास की व्याख्या की।',
+      gu: 'મહાન ક્રિયા યોગી જેમણે ક્રિયા યોગ દ્વારા આધ્યાત્મિક વિકાસ સમજાવ્યો.',
+      bn: 'একজন মহান ক্রিয়াযোগী এবং জ্যোতিষী যিনি ক্রিয়াযোগের মাধ্যমে দ্রুত আধ্যাত্মিক বিকাশের ব্যাখ্যা দিয়েছেন।'
+    },
+    biography: {
+      en: 'Swami Sriyukteswar Giri noted that Kriya Yoga rapidly accelerates human evolution; just half a minute of Kriya practice equals one year of natural spiritual growth. Through this science, a yogi can achieve self-realization in a single lifetime.',
+      hi: 'स्वामी श्रीयुक्तेश्वर गिरि ने बताया कि क्रिया योग मानव विकास को तेजी से गति देता है; क्रिया अभ्यास का केवल आधा मिनट एक वर्ष के प्राकृतिक आध्यात्मिक विकास के बराबर है।',
+      gu: 'સ્વામી શ્રીયુક્તેશ્વર ગિરિએ જણાવ્યું કે ક્રિયા યોગ માનવ વિકાસને વેગ આપે છે.',
+      bn: 'স্বামী শ্রীযুক্তেশ্বর গিরি উল্লেখ করেছেন যে ক্রিয়াযোগ মানুষের আধ্যাত্মিক বিকাশকে ত্বরান্বিত করে।'
+    },
+    birthDate: 'May 10, 1855',
+    deathDate: 'March 9, 1936',
+    birthPlace: {
+      en: 'Serampore, Bengal, British India',
+      hi: 'श्रीरामपुर, बंगाल, ब्रिटिश भारत',
+      gu: 'શ્રીરામપુર, બંગાળ, બ્રિટિશ ભારત',
+      bn: 'শ্রীরামপুর, বাংলা, ব্রিটিশ ভারত'
+    },
+    majorContributions: [
+      {
+        en: 'Training profound masters like Paramahansa Yogananda and writing The Holy Science.',
+        hi: 'परमहंस योगानन्द जैसे गुरुओं को प्रशिक्षित करना और द होली साइंस लिखना।',
+        gu: 'પરમહંસ યોગાનંદ જેવા ગુરુઓને તાલીમ આપવી.',
+        bn: 'পরমহংস যোগানন্দের মতো গুরুদেবদের প্রশিক্ষণ দেওয়া।'
+      }
+    ],
+    timeline: [],
+    teachings: [
+      {
+        id: 't-sriyukteswar',
+        title: {
+          en: 'Accelerated Evolution',
+          hi: 'तीव्र विकास',
+          gu: 'ઝડપી વિકાસ',
+          bn: 'ত্বরান্বিত বিকাশ'
+        },
+        type: 'quote',
+        content: {
+          en: '"Just half a minute of Kriya practice equals one year of natural spiritual growth."',
+          hi: '"क्रिया अभ्यास का केवल आधा मिनट एक वर्ष के प्राकृतिक आध्यात्मिक विकास के बराबर है।"',
+          gu: '"ક્રિયા અભ્યાસની અડધી મિનિટ એક વર્ષના આધ્યાત્મિક વિકાસ બરાબર છે."',
+          bn: '"ক্রিয়াযোগের মাত্র আধ মিনিটের অনুশীলন এক বছরের স্বাভাবিক আধ্যাত্মিক বিকাশের সমান।"'
+        }
+      }
+    ],
+    relatedAshramIds: ['brahmarshi-ashram'],
+    relatedEventIds: []
   }
 ];
 
 export const ASHRAMS: Ashram[] = [
   {
-    id: 'vrindavan-temple',
+    id: 'brahmarshi-ashram',
     name: {
-      en: 'Sri Sri Krishna Balaram Mandir (ISKCON Vrindavan)',
-      hi: 'श्री श्री कृष्ण बलराम मंदिर (इस्कॉन वृंदावन)',
-      gu: 'શ્રી શ્રી કૃષ્ણ બલરામ મંદિર (ઇસ્કોન વૃંદાવન)',
-      bn: 'শ্রী শ্রী কৃষ্ণ বলরাম মন্দির (ইস্কন বৃন্দাবন)'
+      en: 'Brahmarshi Satyananda Sannyas Ashram',
+      hi: 'ब्रह्मर्षि सत्यानन्द संन्यास आश्रम',
+      gu: 'બ્રહ્મર્ષિ સત્યાનંદ સંન્યાસ આશ્રમ',
+      bn: 'ব্রহ্মর্ষি সত্যানন্দ সন্ন্যাস আশ্রম'
     },
+<<<<<<< HEAD
     coverUrl: '/imagehere', // Beautiful temple complex dome proxy
     galleryUrls: [
       '/imagehere',
@@ -280,43 +314,43 @@ export const ASHRAMS: Ashram[] = [
       bn: 'শ্রী মায়াপুর চন্দ্রোদয় মন্দির (ইস্কন মায়াপুর)'
     },
     coverUrl: '/imagehere', // Beautiful grand architect dome visual
+=======
+    coverUrl: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&q=80&w=1200',
+>>>>>>> ac6c22c1af631600924d465d95793bc99929237d
     galleryUrls: [],
-    establishedDate: 'March 11, 1972',
-    builtByGuruId: 'chaitanya',
+    establishedDate: 'Unknown',
+    builtByGuruId: 'sriyukteswar',
     purpose: {
-      en: 'World headquarters of Gaudiya Vaishnavism and landmark for Vedic wisdom cosmology teachings.',
-      hi: 'गौड़ीय वैष्णव संप्रदाय का वैश्विक मुख्यालय और वैदिक ब्रह्मांड विज्ञान की शिक्षाओं का केंद्र।',
-      gu: 'ગૌડીય વૈષ્ણવ સંપ્રદાયનું મુખ્ય મથક અને વૈદિક જ્ઞાન કોસ્મોલોજીનું મુખ્ય કેન્દ્ર.',
-      bn: 'গৌড়ীয় বৈষ্ণবধর্মের বৈশ্বিক প্রধান কার্যালয় এবং পরম বৈদিক ব্রহ্মাণ্ডের অন্যতম নিদর্শন স্থান।'
+      en: 'To spread the profound science of Kriya Yoga to the general public.',
+      hi: 'आम जनता तक क्रिया योग के गहन विज्ञान का प्रसार करना।',
+      gu: 'સામાન્ય લોકોમાં ક્રિયા યોગના વિજ્ઞાનનો પ્રચાર કરવો.',
+      bn: 'সাধারণ মানুষের মধ্যে ক্রিয়াযোগের গভীর বিজ্ঞান প্রচার করা।'
     },
     description: {
-      en: 'Set in Bengal, this coordinates the holy birthplace of Sri Chaitanya Mahaprabhu. It is a mega-religious township. Under construction here is the Temple of the Vedic Planetarium (TOVP), which will showcase the dynamic spiritual structure of the universe as detailed in Srimad Bhagavatam.',
-      hi: 'यह पश्चिम बंगाल के पवित्र मायापुर धाम में स्थित है, जो श्री चैतन्य महाप्रभु की जन्मभूमि है। यहाँ वर्तमान में विशाल "वैदिक तारामंडल मंदिर" (TOVP) बन रहा है, जो ब्रह्मांड की आध्यात्मिक संरचना को प्रदर्शित करेगा।',
-      gu: 'પશ્ચિમ બંગાળના પવિત્ર માયાપુરમાં આવેલું છે, જે શ્રી ચૈતન્ય મહાપ્રભુનું જન્મસ્થળ છે. અહીં વિશાળ "વૈદિક તારામંડળ મંદિર" (TOVP) નું નિર્માણ થઈ રહ્યું છે.',
-      bn: 'পশ্চিমবঙ্গের নদীয়া জেলার অন্তর্গত শ্রীধাম মায়াপুরে অবস্থিত শ্রীচৈতন্য মহাপ্রভুর পুণ্য জন্মস্থান। এখানে নির্মাণাধীন রয়েছে সুবিশাল শ্রী বৈদিক তারামণ্ডল মন্দির (TOVP), যা সমগ্র বিশ্বের মানুষকে বৈদিক মহাবিশ্বের আধ্যাত্মিক পরিক্রমা প্রদর্শন করবে।'
+      en: 'Published the spiritual booklet Kriya Yoga and the Guru Lineage through the Gita Prachar Mandali to introduce Kriya Yoga to spiritual seekers.',
+      hi: 'आध्यात्मिक साधकों को क्रिया योग से परिचित कराने के लिए गीता प्रचार मंडली के माध्यम से आध्यात्मिक पुस्तिका क्रिया योग और गुरु परंपरा प्रकाशित की।',
+      gu: 'ક્રિયા યોગનો પરિચય આપવા પુસ્તિકા પ્રકાશિત કરી.',
+      bn: 'গীতা প্রচার মণ্ডলীর মাধ্যমে ক্রিয়াযোগ ও গুরুপরম্পরা পুস্তিকা প্রকাশ করে।'
     },
     country: 'India',
     state: 'West Bengal',
-    city: 'Mayapur',
-    latitude: 23.4222,
-    longitude: 88.3904,
+    city: 'Kolkata',
+    latitude: 22.5726,
+    longitude: 88.3639,
     dailySchedule: [
-      { time: '04:30 AM', activity: { en: 'Mangala Arati & Kirtan', hi: 'मंगला आरती एवं कीर्तन', gu: 'મંગલા આરતી અને કીર્તન', bn: 'মঙ্গল আরতি ও সংকীর্তন' } },
-      { time: '08:30 AM', activity: { en: 'Srimad-Bhagavatam Class', hi: 'श्रीमद्भागवतम् कक्षा', gu: 'શ્રીમદ-ભાગવતમ કલાસ', bn: 'শ্রীমদ্ভাগবত প্রবচন' } },
-      { time: '01:00 PM', activity: { en: 'Feast Prasadam served', hi: 'महाप्रसाद वितरण', gu: 'મહાપ્રસાદ ભોજન', bn: 'মহাপ্রসাদ ভোজন' } }
+      { time: '05:00 AM', activity: { en: 'Kriya Yoga Practice', hi: 'क्रिया योग अभ्यास', gu: 'ક્રિયા યોગ અભ્યાસ', bn: 'ক্রিয়াযোগ অনুশীলন' } }
     ],
     facilities: [
-      { en: 'Comprehensive Pilgrimage Cottages', hi: 'तीर्थयात्री कुटीर और गेस्ट हाउस', gu: 'તીર્થયાત્રી કુટીર સગવડ', bn: 'মহাতীর্থ যাত্রী ভবন' },
-      { en: 'Goshala with 500+ happy cows', hi: '500+ गायों की सेवा वाली अति भव्य गौशाला', gu: '૫૦૦+ ગાયો વાળી ગૌશાળા', bn: 'শ্রীসুরভি গোশালা (৫০০+ বৈদিক গাভী)' },
-      { en: 'Caitanya Research Center & Library', hi: 'चैतन्य शोध संस्थान और पुस्तकालय', gu: 'ચૈતન્ય રિસર્ચ સેન્ટર અને લાઈબ્રેરી', bn: 'চৈতন্য মহাপ্রভু গবেষণা কেন্দ্র ও পাঠাগার' }
+      { en: 'Meditation Hall', hi: 'ध्यान कक्ष', gu: 'ધ્યાન ખંડ', bn: 'ধ্যান কক্ষ' }
     ],
-    contactEmail: 'mayapur@iskcon.org',
-    contactPhone: '+91-3472-245239',
-    upcomingEventIds: ['ev-gaura-purnima', 'ev-ratha-yatra'],
-    residentGuruIds: ['chaitanya', 'prabhipada']
+    contactEmail: 'info@kriyayoga.org',
+    contactPhone: '+91-0000000000',
+    upcomingEventIds: [],
+    residentGuruIds: ['babaji', 'lahiri-mahasaya', 'sriyukteswar']
   }
 ];
 
+<<<<<<< HEAD
 export const EVENTS: AshramEvent[] = [
   {
     id: 'ev-janmashtami',
@@ -546,37 +580,50 @@ export const PRODUCTS: Product[] = [
     reviews: []
   }
 ];
+=======
+export const EVENTS: AshramEvent[] = [];
+
+export const PRODUCTS: Product[] = [];
+>>>>>>> ac6c22c1af631600924d465d95793bc99929237d
 
 export const BLOGS: BlogArticle[] = [
   {
-    id: 'b-1',
+    id: 'b-kriya',
     title: {
-      en: 'The Science of Mantra Meditation & Inner Peace',
-      hi: 'मंत्र ध्यान का विज्ञान और आंतरिक शांति',
-      gu: 'મંત્ર ધ્યાનનું વિજ્ઞાન અને આંતરિક શાંતિ',
-      bn: 'মন্ত্র জপের বিজ্ঞান ও মানসিক প্রশান্তি'
+      en: 'The Stages and Techniques of Kriya Yoga',
+      hi: 'क्रिया योग के चरण और तकनीकें',
+      gu: 'ક્રિયા યોગના તબક્કાઓ અને તકનીકો',
+      bn: 'ক্রিয়াযোগের স্তর এবং কৌশলসমূহ'
     },
     summary: {
-      en: 'Discover how chanting the Hare Krishna Mahamantra affects the brain, dissolves anxiety, and awakens pure consciousness.',
-      hi: 'जानें कि हरे कृष्ण महामंत्र का जप मस्तिष्क को कैसे प्रभावित करता है, चिंता को मिटाता है और विशुद्ध चेतना जागृत करता है।',
-      gu: 'જાણો કેવી રીતે હરે કૃષ્ણ મહામંત્રનો જાપ તણાવ દૂર કરી બુદ્ધિને તેજસ્વી બનાવે છે અને આધ્યાત્મિક જાગૃતિ લાવે છે.',
-      bn: 'জানুন কিভাবে হরে কৃষ্ণ মহামন্ত্র জপ আমাদের মনকে উদ্বেগ মুক্ত করে এবং পারমার্থিক বিজ্ঞান চেতনা জাগ্রত করে।'
+      en: 'Learn about the First Kriya techniques: Mahamudra, Nabhimudra, Pranayama, Brahma Yoni Mudra, and Khechari Mudra.',
+      hi: 'प्रथम क्रिया तकनीकों के बारे में जानें: महामुद्रा, नाभिमुद्रा, प्राणायाम, ब्रह्म योनि मुद्रा और खेचरी मुद्रा।',
+      gu: 'પ્રથમ ક્રિયા તકનીકો વિશે જાણો.',
+      bn: 'প্রথম ক্রিয়া কৌশল সম্পর্কে জানুন: মহামুদ্রা, নাভিমুদ্রা, প্রাণায়াম, ব্রহ্মযোনি মুদ্রা এবং খেচরী মুদ্রা।'
     },
     content: {
-      en: 'Meditation in the Vedic system is centered on sounds. Sound vibrations hold power to clear mental debris. The Hare Krishna sermon acts as a deep cleansing method. In modern research, rhythmic chanting is confirmed to balance the sympathetic nervous system and reduce cortisol production. By giving 15 minutes to silent Japa daily, a practitioner can achieve stable mental health and a deep connection to the self.',
-      hi: 'वैदिक पद्धति में ध्यान मुख्य रूप से ध्वनि तरंगों पर केंद्रित होता है। ध्वनि कंपनों में मन के विकारों को दूर करने की अमोघ शक्ति होती है। हरे कृष्ण महामंत्र मानसिक शुद्धि की परम औषधि है। आधुनिक वैज्ञानिक अध्ययनों से सिद्ध हुआ है कि लयबद्ध कण्ठ जप हमारे अंतः तंत्रिका तंत्र को संतुलित करता है और कोर्टिसोल यानी तनाव हार्मोन को काफी हद तक कम करता है। प्रतिदिन १५ मिनट तुलसी माला पर जप करने से मानसिक संतुलन और असीम शांति की अनुभूति होती है।',
-      gu: 'વૈદિક પરંપરામાં ધ્યાન આધ્યાત્મિક ધ્વની તરંગો પર કેન્દ્રિત છે. હરિનામ સંકીર્તન મગજને શાંત કરી તમામ મનોવિકારો દૂર કરે છે. આધુનિક વિજ્ઞાન પણ સ્વીકારે છે કે સવારે વહેલા ઉઠીને પવિત્ર મંત્રોચ્ચાર કરવાથી માનસિક તાણ નહિવત થાય છે.',
-      bn: 'বৈদিক জপ-ধ্যানের মূল ভিত্তি হলো চিন্ময় শব্দতরঙ্গ। পারমার্থিক শব্দের অপ্রাকৃত স্পন্দন মানসিক কলুষতা ও উদ্বেগ সহজেই নাশ করে। মহামন্ত্র শব্দের ধ্বনি আমাদের চৈতন্যকে পুনরুজ্জীবিত করে। আধুনিক বিজ্ঞানও প্রমাণ করেছে যে, নিয়মিত নামজপ স্নায়ুতন্ত্রকে শান্ত ও পরম মানসিক প্রশান্তি দান করে।'
+      en: 'Lahiri Mahasaya organized Kriya Yoga into four progressive stages. The First Kriya consists of Mahamudra, Nabhimudra, Pranayama, Brahma Yoni Mudra, and Khechari Mudra. Practicing these brings profound inner peace and accelerates spiritual growth.',
+      hi: 'लाहिड़ी महाशय ने क्रिया योग को चार चरणों में व्यवस्थित किया। इन तकनीकों का अभ्यास गहन आंतरिक शांति लाता है।',
+      gu: 'લાહિડી મહાશયે ક્રિયા યોગને ચાર તબક્કામાં ગોઠવ્યું.',
+      bn: 'লাহিড়ী মহাশয় ক্রিয়াযোগকে চারটি স্তরে বিন্যস্ত করেছেন।'
     },
+<<<<<<< HEAD
     author: 'Gargamuni Swami',
     publishDate: 'May 28, 2026',
     readTime: '5 min read',
     imageUrl: '/imagehere',
+=======
+    author: 'Gita Prachar Mandali',
+    publishDate: 'June 16, 2026',
+    readTime: '3 min read',
+    imageUrl: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=800'
+>>>>>>> ac6c22c1af631600924d465d95793bc99929237d
   }
 ];
 
 export const TESTIMONIALS: Testimonial[] = [
   {
+<<<<<<< HEAD
     id: 't-user1',
     name: 'Michael Henderson',
     avatarUrl: '/imagehere',
@@ -598,6 +645,16 @@ export const TESTIMONIALS: Testimonial[] = [
       hi: 'भगवद गीता पुस्तक की छपाई और शुद्ध धूपबत्ती की त्वरित डिलीवरी से बहुत प्रसन्न हूँ। इनकी दिव्य सुगंध मेरे गृह मंदिर को वृंदावन धाम जैसी ऊर्जा देती है।',
       gu: 'અહીંની પુસ્તકો ઓરિજિનલ ગીતા અને તુલસી માળાની નિત્ય પૂજા માટેની મટીરીયલ ક્વોલિટી ખૂબ જ સુંદર અને પરમ સંતોષકારક છે.',
       bn: 'গীতা শাস্ত্রের চমৎকার বাধাই এবং চন্দন ধূপের তীব্র সুগন্ধ আমার সমস্ত গৃহকোণকে দিব্য বৃন্দাবনের সুবাসে সুরভিত করে তোলে।'
+=======
+    id: 't-1',
+    name: 'Spiritual Seeker',
+    avatarUrl: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=150',
+    experience: {
+      en: 'To be truly free, forget the world, forgive everyone, and harbor no malice toward anyone. God resides in every living body; serving them is serving God.',
+      hi: 'सच्चे अर्थों में स्वतंत्र होने के लिए, दुनिया को भूल जाओ, सबको माफ कर दो और किसी के प्रति द्वेष मत रखो। ईश्वर प्रत्येक जीवित शरीर में निवास करता है; उनकी सेवा करना ही ईश्वर की सेवा है।',
+      gu: 'સાચા અર્થમાં મુક્ત થવા માટે દુનિયાને ભૂલી જાવ.',
+      bn: 'সত্যিকার অর্থে স্বাধীন হতে হলে, পৃথিবী ভুলে যান, সবাইকে ক্ষমা করুন এবং কারও প্রতি বিদ্বেষ রাখবেন না। ভগবান প্রতিটি জীবের দেহে বিরাজমান; তাদের সেবা করাই ভগবানের সেবা।'
+>>>>>>> ac6c22c1af631600924d465d95793bc99929237d
     },
     rating: 5,
     country: 'India'

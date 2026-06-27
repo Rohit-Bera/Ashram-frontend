@@ -29,7 +29,7 @@ export function CartDrawer({ onClose, onToast, onNavigateToStore, onCheckout, on
     if (ok) {
       onToast('Auspicious coupon code accepted! Discount applied.');
     } else {
-      onToast('Code is not recognized. Try "KRISHNA10" or "SEVABHAKTI".');
+      onToast('Code is not recognized. Try "KRIYA10" or "YOGA10".');
     }
     setCouponInput('');
   };
@@ -100,7 +100,7 @@ export function CartDrawer({ onClose, onToast, onNavigateToStore, onCheckout, on
                 <Tag className="absolute left-2.5 top-2 w-3.5 h-3.5 text-amber-500" />
                 <input
                   type="text"
-                  placeholder="Enter Coupon (e.g. KRISHNA10)"
+                  placeholder="Enter Coupon (e.g. KRIYA10)"
                   value={couponInput}
                   onChange={e => setCouponInput(e.target.value)}
                   className="bg-white border border-amber-200 p-2 pl-8 rounded-lg text-xs w-full focus:outline-none"

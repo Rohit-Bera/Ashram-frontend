@@ -34,9 +34,13 @@ export function Header({ currentView, onNavigate, onOpenCart, onOpenAuth, onClea
         <div className="flex items-center gap-4">
           <span className="opacity-95 font-medium flex items-center gap-1">
             <Landmark className="w-3.5 h-3.5 text-[#FF9933]" />
+<<<<<<< HEAD
             Kriyayoga Portal
+=======
+            Kriya Yoga Portal
+>>>>>>> ac6c22c1af631600924d465d95793bc99929237d
           </span>
-          <span className="hidden sm:inline opacity-65 font-mono">2026 spiritual campaign calendar</span>
+          <span className="hidden sm:inline opacity-65 font-mono">2026 spiritual calendar</span>
         </div>
 
         <div className="flex items-center gap-4">

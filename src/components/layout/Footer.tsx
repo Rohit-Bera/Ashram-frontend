@@ -25,14 +25,14 @@ export function Footer({ onToast }: FooterProps) {
             Dedicated to promoting peace, daily meditation practices, and simple living through authentic Vedic scripts commented commentaries. Support holy cow care today.
           </p>
           <p className="text-[10px] text-amber-400 font-mono block">
-            Centenary Campaign. Brahma Gaudiya Chaitanya Sampradaya.
+            Kriya Yoga and the Guru Lineage.
           </p>
         </div>
 
         <div className="md:col-span-3 space-y-3">
           <h5 className="font-bold text-amber-50 uppercase text-[10px] tracking-widest border-b border-amber-900 pb-2">Sacred Coordinates</h5>
-          <p className="flex items-center gap-1.5"><MapPin className="w-4 h-4 text-amber-500" /> Raman Reti, Vrindavan Dham, India</p>
-          <p className="flex items-center gap-1.5"><Mail className="w-4 h-4 text-amber-500" /> centenary@iskcon.org</p>
+          <p className="flex items-center gap-1.5"><MapPin className="w-4 h-4 text-amber-500" /> Kolkata, West Bengal, India</p>
+          <p className="flex items-center gap-1.5"><Mail className="w-4 h-4 text-amber-500" /> info@kriyayoga.org</p>
           <p className="flex items-center gap-1.5"><Phone className="w-4 h-4 text-amber-500" /> +91-565-2540021</p>
         </div>
 
